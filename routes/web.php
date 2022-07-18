@@ -29,5 +29,5 @@ Route::middleware('auth')
 ->name('user.')
 ->group(function ()
 {
-    Route::resource('/apartments','ApartmentController');
+    Route::resource('/apartments','UserApartmentController');
 });

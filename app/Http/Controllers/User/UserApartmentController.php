@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\apartment;
 use Illuminate\Http\Request;
 
-class ApartmentController extends Controller
+class UserApartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
