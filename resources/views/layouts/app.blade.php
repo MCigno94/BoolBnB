@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm px-md-5 m-0 py-0">
             <a class="navbar-brand m-0" href="{{ url('/') }}">
-                <div class="logo d-flex align-items-center text-danger fw-bold">
+                <div class="logo d-flex align-items-center text-danger fw-bold py-2 gap-2">
                     <img src="{{asset('../../img/logo.png')}}" alt="">
                     <div>BoolBnB</div>
                 </div>
