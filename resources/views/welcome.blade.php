@@ -9,6 +9,9 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
 
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
+
         <!-- Styles -->
         <style>
             html, body {
@@ -83,6 +86,10 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
+
+                <button class="btn">
+                        Notification <span class="badge bg-primary">New!</span>
+                </button>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
