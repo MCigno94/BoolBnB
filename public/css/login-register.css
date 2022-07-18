@@ -1,0 +1,22 @@
+.container.ct-form > .row {
+  box-shadow: 0 0 30px rgba(131, 131, 131, 0.315);
+}
+
+.form {
+  height: 100%;
+}
+
+img {
+  width: 250px;
+}
+
+@media screen and (max-width: 768px) {
+  .ct-form {
+    background-color: #FF5A60 !important;
+  }
+
+  .ct-form .logo-text {
+    color: white !important;
+  }
+}
+

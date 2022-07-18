@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css./login-register') }}">
+@endsection
+
 @section('content')
 <div class="container ct-form bg-white bg-md-gray">
     <div class="row row-cols-1 row-cols-md-2 h-100 align-items-center justify-content-center">
@@ -13,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="form col bg-danger d-flex align-items-center justify-content-center">
+        <div class="form col bg-danger d-flex align-items-center justify-content-center py-5">
             <div class="text-white">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
