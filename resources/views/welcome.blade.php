@@ -90,6 +90,7 @@
                 <button class="btn">
                         Notification <span class="badge bg-primary">New!</span>
                 </button>
+                <i class="fa-solid fa-house"></i>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
