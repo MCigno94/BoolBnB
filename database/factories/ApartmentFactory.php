@@ -21,7 +21,5 @@ $factory->define(apartment::class, function (Faker $faker) {
         'img' => "c231ae49c136396427815b0e33bd10974919",
         'visibility' => 1,
         
-        
-        
     ];
 });
