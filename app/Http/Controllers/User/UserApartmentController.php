@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\apartment;
 use Illuminate\Http\Request;
@@ -18,7 +19,9 @@ class UserApartmentController extends Controller
     public function index()
     {
         $apartments = Apartment::all()->where('user_id', Auth::id());
-        dd($apartments);
+        //dd($apartments);
+
+        return view('user.apartments.index', compact('apartments'));
     }
 
     /**
@@ -28,7 +31,7 @@ class UserApartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.apartments.create');
     }
 
     /**
@@ -39,7 +42,18 @@ class UserApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = $request->all();
+        $data['user_id'] = Auth::id();
+        
+
+        $img_path = Storage::put('images', $data['img']);
+
+        $data['img'] = $img_path;
+        
+        
+        
+        Apartment::create($data);
     }
 
     /**

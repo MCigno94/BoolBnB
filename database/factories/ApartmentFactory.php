@@ -18,7 +18,7 @@ $factory->define(apartment::class, function (Faker $faker) {
         'street' => "via nicola nagli",
         'street_number' => $faker->numberBetween(1, 100),
         'zip_code' => "47923",
-        'img' => "c231ae49c136396427815b0e33bd10974919",
+        'img' => "images/rWAGWgwasaCWL3Ozlvl6zcMLl7r4P9ZkkxiQomp6.jpg",
         'visibility' => 1,
         
     ];
