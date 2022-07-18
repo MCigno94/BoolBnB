@@ -26,7 +26,7 @@ class CreateApartmentsTable extends Migration
             $table->string('city');
             $table->string('street');
             $table->tinyInteger('street_number');
-            $table->tinyInteger('zip_code');
+            $table->string('zip_code');
             $table->string('img');
             $table->tinyInteger('visibility');
             $table->timestamps();
