@@ -19979,7 +19979,11 @@ main .card {
 }
 
 img {
-  width: 250px;
+  width: 100px;
+}
+
+.logo-text {
+  padding-top: 10px;
 }
 
 @media screen and (max-width: 768px) {
@@ -19990,5 +19994,9 @@ img {
   .ct-form .logo-text {
     color: white !important;
   }
+}
+
+.navbar img {
+  width: 100px !important;
 }
 
