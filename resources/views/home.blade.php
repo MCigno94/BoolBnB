@@ -16,6 +16,11 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+                <div class="container">
+                    @foreach($apartments as $apartment)
+                        <h1>{{$apartment->title}}</h1>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
