@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\apartment;
+use App\Models\apartment;
 use Illuminate\Http\Request;
 
 class ApartmentController extends Controller
