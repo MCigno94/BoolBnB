@@ -19932,3 +19932,63 @@ fieldset:disabled .btn {
   }
 }
 
+.form-control-primary {
+  margin: 10px;
+  opacity: 0.2;
+  border-radius: 2px;
+}
+
+.sidebar {
+  left: 0;
+  bottom: 0;
+  top: 0;
+  padding: 70px 0 0 10px;
+  border-right: 1px solid #d3d3d3;
+}
+
+.left-sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 70px);
+}
+
+.sidebar-nav li .nav-link {
+  color: #333;
+  font-weight: 500;
+}
+
+main {
+  padding-top: 90px;
+}
+
+main .card {
+  margin-bottom: 20px;
+}
+
+.navbar-brand {
+  margin: 10px;
+}
+
+.container.ct-form > .row {
+  box-shadow: 0 0 30px rgba(131, 131, 131, 0.315);
+}
+
+.form {
+  height: 100%;
+}
+
+img {
+  width: 250px;
+}
+
+@media screen and (max-width: 768px) {
+  .ct-form {
+    background-color: #FF5A60 !important;
+  }
+
+  .ct-form .logo-text {
+    color: white !important;
+  }
+}
+
