@@ -19,7 +19,7 @@
             <ul class="navbar-nav">
                 <!-- ========== Start HOME ========== -->
                 <li class="nav-item px-1 px-md-3">
-                    <a class="nav-link" href="http://127.0.0.1:8000">Home</a>
+                    <a class="nav-link" href="{{ route('home') }}">Home</a>
                 </li>
                 <!-- ========== End HOME ========== -->
 

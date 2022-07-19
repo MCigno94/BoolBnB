@@ -127,8 +127,6 @@ class UserApartmentController extends Controller
 
         $data['img'] = $img_path;
 
-       
-
         $apartment->update($data);
 
         return redirect()->route('user.apartments.index');
