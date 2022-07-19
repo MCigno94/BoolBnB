@@ -11,6 +11,42 @@
 @import 'dashboard';
 @import 'login-register';
 
+
+main{
+padding-bottom: 100px !important;
+}
+
 .navbar  img{
     width: 30px !important;
+}
+
+//Footer
+footer {
+    background-color: #f7f7f7;
+    border-top: 1px solid rgb(255, 255, 255);
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+
+.ms-list-group {
+    list-style: none;
+    font-size: 13px;
+    color: #4A4B4B;
+
+    a {
+        text-decoration: none;
+        color: #4A4B4B;
+        transition: all 0.2s;
+
+        &:hover {
+            color: rgb(255,90,95);
+            text-decoration: underline;
+        }
+
+        i:hover {
+            color: rgb(255,90,95);
+        }
+    }
 }
