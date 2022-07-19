@@ -88,53 +88,32 @@
                         </div>
                     </div>
 
-                    <!-- @foreach($services as $service)
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="" value="{3:option1}">
-                        <label class="form-check-label" for="">{{$service->name}}</label>
-                    </div>
-                    @endforeach -->
-
+                    <label class="col-form-label px-0 pt-3" for="services">Services</label>
+                    <div class="row row-cols-2 row-cols-xl-3">
                     @foreach($services as $id => $service)
-                    <div>
-                        <label>
+                        <div class="col">
                             <input type="checkbox" name="services[]" value="{{ $id }}">
                             <span>{{ $service->name }}</span>
-                        </label>
+                        </div>
+                        @endforeach
                     </div>
-                    @endforeach
             
-                    <div class="d-flex align-items-center">
-<!--                             DAILY PRICE
-                        <div class="form-group row image m-0 py-1 w-50 pe-3">
-                            <label class="col-form-label px-0" for="daily_price">Daily price</label>
-                            <input class="form-control" type="number" name="daily_price" id="daily_price">
-                        </div> -->
+                    <div class="d-flex align-items-center gap-5 pt-4">
+                        <!-- BUTTON -->
+                        <div class="button">
+                            <button class="btn btn-light text-danger fw-bold px-5" type="submit">ADD</button>
+                        </div>
 
                         <!-- VISIBILITY -->
-                        <!-- <div class="visibility d-flex flex-column gap-2 align ps-3">
-                            <p class="m-0 p-0 pb-1">Make visible</p>
-                            <div class="d-flex gap-5">
-                                <div class="yes">
-                                    <label for="YES"> YES</label>
-                                    <input type="radio" name="visibility" id="YES" value="true">
-                                </div>
-                                <div class="no">
-                                    <label for="NO"> NO</label>
-                                    <input type="radio" name="visibility" id="NO" value="false">
-                                </div>
+                        <div class="visibility d-flex gap-2 pt-1">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" style="transform: scale(1.75)">
+                                <label class="form-check-label ms-3" for="flexSwitchCheckChecked">Make visible</label>
                             </div>
-                        </div> -->
-                        <div class="visibility">
-                            <label for="visibility">visibility </label>
-                            <input type="number" name="visibility" id="visibility">
                         </div>
+
                     </div>
 
-                    <!-- BUTTON -->
-                    <div class="button pt-5">
-                        <button class="btn btn-light text-danger fw-bold w-25" type="submit">ADD</button>
-                    </div>
                 </form>
             </div>
         </div>
