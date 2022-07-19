@@ -145,6 +145,7 @@ class UserApartmentController extends Controller
      */
     public function destroy(apartment $apartment)
     {
-        //
+        $apartment->delete();
+        return redirect()->route('user.apartments.index');
     }
 }
