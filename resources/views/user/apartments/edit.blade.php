@@ -30,8 +30,10 @@
                     <!-- IMAGE -->
                     <div class="form-group row image m-0 py-1">
                         <label class="col-form-label px-0" for="img">Image</label>
-                        <img src="{{asset('storage/' . $apartment->img)}}" style="width: 200px;" alt="">
-                        <input class="form-control" type="file" name="img" id="img">
+                        <div class="d-flex gap-4 px-0">
+                            <img src="{{asset('storage/' . $apartment->img)}}" style="width: 200px;" alt="">
+                            <input class="form-control align-self-end" type="file" name="img" id="img" value="">
+                        </div>
                     </div>
 
                     <!-- COUNTRY -->
