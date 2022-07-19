@@ -20,8 +20,6 @@ Route::get('/', function () {
 });
 
 
-
-
 Route::middleware('auth')
 ->prefix('user')
 ->namespace('User')
@@ -31,4 +29,4 @@ Route::middleware('auth')
     Route::resource('/apartments','UserApartmentController');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
