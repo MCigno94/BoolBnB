@@ -32,6 +32,7 @@ class UserApartmentController extends Controller
     public function create()
     {
         return view('user.apartments.create');
+        
     }
 
     /**
@@ -42,6 +43,23 @@ class UserApartmentController extends Controller
      */
     public function store(Request $request)
     {
+
+
+        $validated_data =  $request->validate([
+             'title' =>'required|min:3',
+            //'rooms_number' =>'required',
+            //'beds_number' =>'required',
+            //'bathrooms_number' =>'required|min:3',
+            //'square_meters' =>'required',
+            // 'country' =>'required',
+            // 'city' =>'required|min:3',
+            // 'street' =>'required',
+            // 'street_number' =>'required',
+            // 'zip_code' =>'required|min:3',
+            // 'img' =>'required',
+            // 'visibility' =>'required',
+
+       ]);
 
         $data = $request->all();
         $data['user_id'] = Auth::id();
@@ -54,6 +72,7 @@ class UserApartmentController extends Controller
         
         
         Apartment::create($data);
+        return redirect()->route('user.apartments.index');
     }
 
     /**
@@ -64,7 +83,7 @@ class UserApartmentController extends Controller
      */
     public function show(apartment $apartment)
     {
-        //
+        return view('user.apartments.show', compact('apartment'));
     }
 
     /**
@@ -75,7 +94,7 @@ class UserApartmentController extends Controller
      */
     public function edit(apartment $apartment)
     {
-        //
+        return view('user.apartments.edit', compact('apartment'));
     }
 
     /**
@@ -87,7 +106,35 @@ class UserApartmentController extends Controller
      */
     public function update(Request $request, apartment $apartment)
     {
-        //
+
+        $validated_data =  $request->validate([
+            'title' =>'required|min:3',
+           //'rooms_number' =>'required',
+           //'beds_number' =>'required',
+           //'bathrooms_number' =>'required|min:3',
+           //'square_meters' =>'required',
+           // 'country' =>'required',
+           // 'city' =>'required|min:3',
+           // 'street' =>'required',
+           // 'street_number' =>'required',
+           // 'zip_code' =>'required|min:3',
+           // 'img' =>'required',
+           // 'visibility' =>'required',
+
+      ]);
+
+        Storage::delete($apartment->img);
+        $data = $request->all();
+
+        $img_path = Storage::put('images', $data['img']);
+
+        $data['img'] = $img_path;
+
+       
+
+        $apartment->update($data);
+
+        return redirect()->route('user.apartments.index');
     }
 
     /**
