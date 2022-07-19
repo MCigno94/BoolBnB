@@ -43,33 +43,27 @@ class UserApartmentController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $validated_data =  $request->validate([
-             'title' =>'required|min:3',
-            //'rooms_number' =>'required',
-            //'beds_number' =>'required',
-            //'bathrooms_number' =>'required|min:3',
-            //'square_meters' =>'required',
-            // 'country' =>'required',
-            // 'city' =>'required|min:3',
-            // 'street' =>'required',
-            // 'street_number' =>'required',
-            // 'zip_code' =>'required|min:3',
-            // 'img' =>'required',
-            // 'visibility' =>'required',
-
+            'title' =>'required|string|min:3',
+            'rooms_number' =>'required|numeric|min:1',
+            'beds_number' =>'required|numeric|min:1',
+            'bathrooms_number' =>'required|numeric|min:1',
+            'square_meters' =>'required|numeric|min:9',
+            'country' =>'required|string|min:3',
+            'city' =>'required|string|min:3',
+            'street' =>'required|string|min:3',
+            'street_number' =>'required|numeric|min:9',
+            'zip_code' =>'required|numeric|min:1',
+            'img' =>'required|image|max:1000',
+            'visibility' =>'required|numeric|min:0|max:1'
        ]);
 
         $data = $request->all();
-        $data['user_id'] = Auth::id();
-        
+        $data['user_id'] = Auth::id();    
 
         $img_path = Storage::put('images', $data['img']);
 
         $data['img'] = $img_path;
-        
-        
         
         Apartment::create($data);
         return redirect()->route('user.apartments.index');

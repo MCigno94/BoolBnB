@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <!-- Sidebar -->
+        <!-- left-sidebar -->
         <div class="col-md-2 bg-light d-none d-md-block sidebar">
             <div class="left-sidebar">
                 <ul class="nav flex-column sidebar-nav">
@@ -62,7 +62,7 @@
             <div class="d-flex flex-wrap gap-4">
                 @foreach($apartments as $apartment)
                 <div class="card">
-                    <img class="card-img-top" src="{{$apartment->image}}" alt="un immagine bella bella" style="height: 200px">
+                    <img src="{{ ($apartment->img === 'Case-moderne.jpg') ? asset('img/Case-moderne.jpg') : asset('storage/' . $apartment->img) }}" alt="{{$apartment->title}}">
                     <div class="card-body">
                         <h2>{{$apartment->title}}</h2>
                         <p>{{$apartment->description}}</p>
