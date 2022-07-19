@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\apartment;
+use App\Models\service;
 use Illuminate\Http\Request;
 
 class UserApartmentController extends Controller
@@ -31,7 +32,9 @@ class UserApartmentController extends Controller
      */
     public function create()
     {
-        return view('user.apartments.create');
+        $services = Service::all();
+        //dd($services);
+        return view('user.apartments.create', compact('services'));
         
     }
 
@@ -88,7 +91,8 @@ class UserApartmentController extends Controller
      */
     public function edit(apartment $apartment)
     {
-        return view('user.apartments.edit', compact('apartment'));
+        $services = Service::all();
+        return view('user.apartments.edit', compact('apartment', 'services'));
     }
 
     /**
@@ -102,19 +106,18 @@ class UserApartmentController extends Controller
     {
 
         $validated_data =  $request->validate([
-            'title' =>'required|min:3',
-           //'rooms_number' =>'required',
-           //'beds_number' =>'required',
-           //'bathrooms_number' =>'required|min:3',
-           //'square_meters' =>'required',
-           // 'country' =>'required',
-           // 'city' =>'required|min:3',
-           // 'street' =>'required',
-           // 'street_number' =>'required',
-           // 'zip_code' =>'required|min:3',
-           // 'img' =>'required',
-           // 'visibility' =>'required',
-
+            'title' =>'required|string|min:3',
+            'rooms_number' =>'required|numeric|min:1',
+            'beds_number' =>'required|numeric|min:1',
+            'bathrooms_number' =>'required|numeric|min:1',
+            'square_meters' =>'required|numeric|min:9',
+            'country' =>'required|string|min:3',
+            'city' =>'required|string|min:3',
+            'street' =>'required|string|min:3',
+            'street_number' =>'required|numeric|min:9',
+            'zip_code' =>'required|numeric|min:1',
+            'img' =>'required|image|max:1000',
+            'visibility' =>'required|numeric|min:0|max:1'
       ]);
 
         Storage::delete($apartment->img);

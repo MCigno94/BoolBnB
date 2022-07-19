@@ -91,6 +91,23 @@
                             <input class="form-control" type="number" name="bathrooms_number" id="bathrooms_number" value="{{old('bathrooms_number', $apartment->bathrooms_number)}}">
                         </div>
                     </div>
+
+                    <!-- @foreach($services as $service)
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="name" checked="" value="{3:option1}">
+                        <label class="form-check-label" for="name">{{$service->name}}</label>
+                    </div>
+                    @endforeach -->
+
+                    @foreach($services as $id => $service)
+                    <div>
+                        <label>
+                            <input type="checkbox" name="services[]" value="{{ $id }}"
+                                {{ ( is_array(old('services')) && in_array($id, old('services')) ) ? 'checked ' : '' }}>
+                            <span>{{ $service->name }}</span>
+                        </label>
+                    </div>
+                    @endforeach
             
                     <div class="d-flex align-items-center">
 <!--                             DAILY PRICE
