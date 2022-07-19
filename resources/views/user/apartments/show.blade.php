@@ -34,14 +34,13 @@
             <form action="{{route('user.apartments.destroy', $apartment->id)}}" method="post">
                 @csrf
                 @method('DELETE')
-
                     <button class="btn" type="submit">
                         <i class="fa-solid fa-trash pe-2 text-danger"></i>Delete
                     </button>
-
             </form>
         </div>
     </div>
         <h1 class="mr-2">{{ $apartment->title }}</h1>
+        <img src="{{asset('storage/' . $apartment->img)}}" alt="">
 </section>
 @endsection

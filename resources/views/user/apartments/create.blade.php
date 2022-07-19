@@ -106,12 +106,16 @@
 
                         <!-- VISIBILITY -->
                         <div class="visibility d-flex gap-2 pt-1">
-                            <div class="form-check form-switch">
+                            <!-- <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" style="transform: scale(1.75)">
                                 <label class="form-check-label ms-3" for="flexSwitchCheckChecked">Make visible</label>
+                            </div> -->
+
+                            <div class="form-group row image m-0 py-1 w-50">
+                                <label class="col-form-label px-0" for="visibility">Visibility</label>
+                                <input class="form-control" type="number" name="visibility" id="visibility">
                             </div>
                         </div>
-
                     </div>
 
                 </form>
