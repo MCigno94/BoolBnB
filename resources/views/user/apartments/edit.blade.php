@@ -130,16 +130,6 @@
                         </div>
                         @endforeach
                     </div>
-
-
-                    <!-- @foreach($services as $service)
-                    <div>
-                        <label>
-                            <input type="checkbox" name="services[]" value="{{$service->id}}">
-                            <span>{{ $service->name }}</span>
-                        </label>
-                    </div>
-                    @endforeach -->
             
                     <div class="d-flex align-items-center">
                         <div class="visibility">

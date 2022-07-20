@@ -108,11 +108,7 @@ class UserApartmentController extends Controller
             $ids[]= $id->service_id;
         }
 
-        /* $user = App\User::find(1);
- 
-        $user->roles()->attach($roleId); */
-
-        //dd($ids);
+        
 
         return view('user.apartments.edit', compact('apartment', 'services', 'ids'));
     }
@@ -156,6 +152,19 @@ class UserApartmentController extends Controller
         }
         
         $apartment->update($data);
+
+        $servicesId = DB::table('apartment_service')->select('service_id')->where('apartment_id', $apartment->id)->get();
+
+        $ids= [];
+
+        foreach ($servicesId as $id) {
+            $ids[]= $id->service_id;
+        }
+
+        $apartment->service()->detach($ids);
+        $apartment->service()->attach($request->services);
+
+
 
         return redirect()->route('user.apartments.index');
     }
