@@ -63,12 +63,12 @@ class UserApartmentController extends Controller
             'visibility' =>'required|numeric|min:0|max:1'
        ]);
 
+        $data = $request->all();
         
         $img_path = Storage::put('images', $data['img']);
     
         $data['img'] = $img_path;
 
-        $data = $request->all();
         $data['user_id'] = Auth::id();
 
         $new_apartment = Apartment::create($data);
@@ -106,10 +106,10 @@ class UserApartmentController extends Controller
             $ids[]= $id->service_id;
         }
 
-        $user = App\User::find(1);
+        /* $user = App\User::find(1);
  
-        $user->roles()->attach($roleId);
-        
+        $user->roles()->attach($roleId); */
+
         //dd($ids);
 
         return view('user.apartments.edit', compact('apartment', 'services', 'ids'));
