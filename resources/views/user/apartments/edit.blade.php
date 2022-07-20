@@ -113,9 +113,9 @@
                     <div>
                         <label>
                             <input type="checkbox" name="services[]" value="{{$service->id}}"
-                            @if
+                            
                             {{ (in_array($service->id, $ids)) ? 'checked' : 'class="danger"' }}
-
+                            
                             >
                             <span>{{ $service->name }}</span>
                         </label>
