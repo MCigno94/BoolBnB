@@ -29,4 +29,11 @@ Route::middleware('auth')
     Route::resource('/apartments','UserApartmentController');
 });
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+/* DEVE SEMPRE ESSERE L'ULTIMA */
+Route::get("{any?}", function ()
+{
+    return view('auth.login');
+})->where('any','.*');

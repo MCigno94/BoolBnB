@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\apartment;
 use App\Models\service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserApartmentController extends Controller
 {
@@ -47,6 +48,7 @@ class UserApartmentController extends Controller
     public function store(Request $request)
     {
         $validated_data =  $request->validate([
+
             'title' =>'required|string|min:3',
             'rooms_number' =>'required|numeric|min:1',
             'beds_number' =>'required|numeric|min:1',
@@ -57,18 +59,28 @@ class UserApartmentController extends Controller
             'street' =>'required|string|min:3',
             'street_number' =>'required|numeric|min:9',
             'zip_code' =>'required|numeric|min:1',
-            'img' =>'required|image|max:1000',
+            'img' =>'required|image|max:500',
             'visibility' =>'required|numeric|min:0|max:1'
        ]);
 
-        $data = $request->all();
-        $data['user_id'] = Auth::id();    
+       //dd($request->services);
+        /* if($request->hasFile('img')) { 
 
-        $img_path = Storage::put('images', $data['img']);
-
-        $data['img'] = $img_path;
+            $request->validate([
+                'img' =>'required|image|max:500'
+            ]);
+        } */
         
-        Apartment::create($data);
+        $img_path = Storage::put('images', $data['img']);
+    
+        $data['img'] = $img_path;
+
+        $data = $request->all();
+        $data['user_id'] = Auth::id();
+
+        $new_apartment = Apartment::create($data);
+        $new_apartment->service()->attach($request->services);
+
         return redirect()->route('user.apartments.index');
     }
 
@@ -92,7 +104,18 @@ class UserApartmentController extends Controller
     public function edit(apartment $apartment)
     {
         $services = Service::all();
-        return view('user.apartments.edit', compact('apartment', 'services'));
+
+        $servicesId = DB::table('apartment_service')->select('service_id')->where('apartment_id', $apartment->id)->get();
+
+        $ids= [];
+
+        foreach ($servicesId as $id) {
+            $ids[]= $id->service_id;
+        }
+
+        //dd($array);
+
+        return view('user.apartments.edit', compact('apartment', 'services', 'ids'));
     }
 
     /**
@@ -119,7 +142,7 @@ class UserApartmentController extends Controller
             'img' =>'required|image|max:1000',
             'visibility' =>'required|numeric|min:0|max:1'
       ]);
-
+    
         Storage::delete($apartment->img);
         $data = $request->all();
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Service extends Model
 {
 
-    public function apartment():BelongsToMany
+    public function apartment(): BelongsToMany
     {
         return $this->belongsToMany(Apartment::class);
     }

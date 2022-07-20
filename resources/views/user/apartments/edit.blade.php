@@ -99,7 +99,7 @@
                     </div>
                     @endforeach -->
 
-                    @foreach($services as $id => $service)
+                    <!-- @foreach($services as $id => $service)
                     <div>
                         <label>
                             <input type="checkbox" name="services[]" value="{{ $id }}"
@@ -107,7 +107,21 @@
                             <span>{{ $service->name }}</span>
                         </label>
                     </div>
+                    @endforeach -->
+
+                    @foreach($services as $service)                    
+                    <div>
+                        <label>
+                            <input type="checkbox" name="services[]" value="{{$service->id}}"
+                            @if
+                            {{ (in_array($service->id, $ids)) ? 'checked' : 'class="danger"' }}
+
+                            >
+                            <span>{{ $service->name }}</span>
+                        </label>
+                    </div>
                     @endforeach
+
             
                     <div class="d-flex align-items-center">
 <!--                             DAILY PRICE
