@@ -76,23 +76,24 @@
                 <td>
                     <img width="150" src="{{ ($apartment->img === 'Case-moderne.jpg') ? asset('img/Case-moderne.jpg') : asset('storage/' . $apartment->img) }}" alt="{{$apartment->title}}">
                 </td>
-                <td>
+                <td class="text-center align-middle">
                 @if ($apartment->visibility === "true") 
-                                {{-- <i class="fas fa-circle mr-2"></i> --}}
-                                <i style="color: green" class="fas fa-circle mx-2"></i>
-                            @else
-                                <i style="color: red" class="fas fa-circle mx-2"></i>
-                            @endif
+                    <i style="color: green" class="fas fa-circle mx-2"></i>
+                @else
+                    <i style="color: red" class="fas fa-circle mx-2"></i>
+                @endif
 
                 </td>
 
-                <td>
-                    <a class="btn btn-primary" href="{{route('user.apartments.show',$apartment->id)}}">Views</a>
-                    <a class="btn btn-secondary" href="{{route('user.apartments.edit',$apartment->id)}}">Edit</a>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-apartment-{{$apartment->id}}">
-                        Delete
-                    </button>
+                <td class="align-middle">
+                    <div>
+                        <a class="btn btn-primary" href="{{route('user.apartments.show',$apartment->id)}}">Views</a>
+                        <a class="btn btn-secondary" href="{{route('user.apartments.edit',$apartment->id)}}">Edit</a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-apartment-{{$apartment->id}}">
+                            Delete
+                        </button>
+                    </div>
                     <!-- Modal -->
                     <div class="modal fade" id="delete-apartment-{{$apartment->id}}" tabindex="-1" aria-labelledby="modelTitle-{{$apartment->id}}" aria-hidden="true">
                         <div class="modal-dialog">
