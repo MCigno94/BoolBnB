@@ -136,7 +136,7 @@ class UserApartmentController extends Controller
             'country' =>'required|string|min:3',
             'city' =>'required|string|min:3',
             'street' =>'required|string|min:3',
-            'street_number' =>'required|numeric|min:9',
+            'street_number' =>'required|numeric|min:1',
             'zip_code' =>'required|numeric|min:1',
             'img' =>'image|max:1000',
             'visibility' =>'required|numeric|min:0|max:1',
