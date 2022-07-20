@@ -20,6 +20,8 @@ $factory->define(apartment::class, function (Faker $faker) {
         'zip_code' => "47923",
         'img' => "Case-moderne.jpg",
         'visibility' => 1,
+        'latitude' => '4444',
+        'longitude' => '4444',
         
     ];
 });

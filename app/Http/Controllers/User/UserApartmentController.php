@@ -60,7 +60,9 @@ class UserApartmentController extends Controller
             'street_number' =>'required|numeric|min:9',
             'zip_code' =>'required|numeric|min:1',
             'img' =>'required|image|max:500',
-            'visibility' =>'required|numeric|min:0|max:1'
+            'visibility' =>'required|numeric|min:0|max:1',
+            'longitude' => 'required',
+            'latitude' => 'required',
        ]);
 
         $data = $request->all();
@@ -137,7 +139,9 @@ class UserApartmentController extends Controller
             'street_number' =>'required|numeric|min:9',
             'zip_code' =>'required|numeric|min:1',
             'img' =>'image|max:1000',
-            'visibility' =>'required|numeric|min:0|max:1'
+            'visibility' =>'required|numeric|min:0|max:1',
+            'longitude' => 'required',
+            'latitude' => 'required',
         ]);
         
         $data = $request->all();
@@ -164,6 +168,7 @@ class UserApartmentController extends Controller
      */
     public function destroy(apartment $apartment)
     {
+        Storage::delete($apartment->img);
         $apartment->delete();
         return redirect()->route('user.apartments.index');
     }

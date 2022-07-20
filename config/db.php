@@ -5,55 +5,51 @@ return [
     [
         [
             "name" => "Wifi",
-            "icon" => "fa-house"
+            "icon" => "fa-solid fa-wifi"
         ],
         [
-            "name" => "Colazione",
-            "icon" => "fa-pancakes"
+            "name" => "Breakfast",
+            "icon" => "fa-solid fa-mug-saucer"
         ],
         [
-            "name" => "Aria condizionata",
-            "icon" => "fa-snowflake"
+            "name" => "Air Conditioning",
+            "icon" => "fa-solid fa-snowflake"
         ],
         [
-            "name" => "Cucina",
-            "icon" => "fa-house"
+            "name" => "Kitchen",
+            "icon" => "fa-solid fa-kitchen-set"
         ],
         [
             "name" => "Garage",
-            "icon" => "fa-garage-car"
+            "icon" => "fa-solid fa-warehouse"
         ],
         [
-            "name" => "Parcheggio privato",
-            "icon" => "fa-circle-parking"
+            "name" => "Private Parking",
+            "icon" => "fa-solid fa-square-parking"
         ],
         [
-            "name" => "Vista mare",
-            "icon" => "fa-solid fa-house"
+            "name" => "Sea View",
+            "icon" => "fa-solid fa-water"
         ],
         [
-            "name" => "Lavatrice",
-            "icon" => "fa-washing-machine"
+            "name" => "Taxi",
+            "icon" => "fa-solid fa-taxi"
         ],
         [
             "name" => "TV",
-            "icon" => "fa-tv"
+            "icon" => "fa-solid fa-tv"
         ],
         [
             "name" => "Frigo",
-            "icon" => "fa-refrigerator"
+            "icon" => "fa-solid fa-temperature-arrow-down"
         ],
         [
-            "name" => "Animali",
-            "icon" => "fa-paw"
-        ],
-        [
-            "name" => "Microonde",
-            "icon" => "fa-microwave"
+            "name" => "Animals",
+            "icon" => "fa-solid fa-paw"
         ],
         [
             "name" => "Self check-in",
-            "icon" => "fa-building-circle-check"
+            "icon" => "fa-solid fa-building-circle-check"
         ],
     ]
-];
+    ];

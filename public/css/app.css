@@ -20054,3 +20054,27 @@ footer {
   transform: scale(1.05);
 }
 
+form {
+  position: relative;
+}
+
+.result {
+  background-color: #f8fafc;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  position: absolute;
+  max-height: 400px;
+  overflow: auto;
+  transform: translateY(20%);
+}
+
+.list-result {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #212529;
+  background-clip: padding-box;
+  border-bottom: 1px solid #ced4da;
+}
+
