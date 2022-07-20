@@ -118,24 +118,24 @@
                     <!-- SERVICES -->
                     <label class="col-form-label px-0 pt-3" for="services">Services</label>
                     <div class="row row-cols-2 row-cols-xl-3">
-                    @foreach($services as $service)
-                        <div class="col">
-                            <input type="checkbox" name="services[]" value="{{$service->id}}" {{ (in_array($service->id, $ids)) ? 'checked' : 'class="alert"' }}>
-                            <span>
+                        @foreach($services as $service)
+                            <div class="col">
+                                <input type="checkbox" name="services[]" value="{{$service->id}}" {{ (in_array($service->id, $ids)) ? 'checked' : 'class="alert"' }}>
                                 <span>
-                                    <i class="{{ $service->icon }} ps-1 pe-3" style="width: 8px;"></i>
+                                    <span>
+                                        <i class="{{ $service->icon }} ps-1 pe-3" style="width: 8px;"></i>
+                                    </span>
+                                    <span>{{ $service->name }}</span>
                                 </span>
-                                <span>{{ $service->name }}</span>
-                            </span>
-                        </div>
+                            </div>
                         @endforeach
                     </div>
             
                     <div class="d-flex align-items-center">
                         <div class="visibility">
                             <label for="visibility">visibility </label>
-                            <input type="number" name="visibility" id="visibility" value="{{old('visibility', $apartment->visibility)}}">
-                            <small class="form-text text-white">{{$errors->first('visibility')}}</small>                            
+                            <input type="checkbox" name="visibility" class="mt-5 ms-3" Style="width:25px; height:25px" id="visibility" value="true"
+                            {{ ($apartment->visibility === "true") ? 'checked' : '' }} >                          
                         </div>
                     </div>
 

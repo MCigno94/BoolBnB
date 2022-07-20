@@ -132,22 +132,11 @@
                         </div>
                         @endforeach
                     </div>
-
-
-                    <!-- @foreach($services as $service)
-                    <div>
-                        <label>
-                            <input type="checkbox" name="services[]" value="{{$service->id}}">
-                            <span>{{ $service->name }}</span>
-                        </label>
-                    </div>
-                    @endforeach -->
             
                     <div class="d-flex align-items-center">
                         <div class="visibility">
                             <label for="visibility">visibility </label>
-                            <input type="number" name="visibility" id="visibility">
-                            <small class="form-text text-white">{{$errors->first('visibility')}}</small>                            
+                            <input class="mt-5 ms-3" Style="width:25px; height:25px" type="checkbox" name="visibility" id="visibility" value="true">
                         </div>
                     </div>
 

@@ -17,10 +17,22 @@
                     {{ __('You are logged in!') }}
                 </div>
                 <div class="container">
-                    @foreach($apartments as $apartment)
-                        <h1>{{$apartment->title}}</h1>
-                        <img src="{{ ($apartment->img === 'Case-moderne.jpg') ? asset('img/Case-moderne.jpg') : asset('storage/' . $apartment->img) }}" alt="{{$apartment->title}}">
-                    @endforeach
+                    <div class="row row-cols-2 g-3">
+                        @foreach($apartments as $apartment)
+                        @if($apartment->visibility === "true")
+                        <div class="cols">                            
+                            <div class="card">
+
+                                <div class="img_container">
+                                    
+                                    <img class="apartment_img" src="{{ ($apartment->img === 'Case-moderne.jpg') ? asset('img/Case-moderne.jpg') : asset('storage/' . $apartment->img) }}" alt="{{$apartment->title}}">
+                                </div>
+                                <h5>{{$apartment->title}}</h5>
+                            </div>
+                        </div>
+                        @endif
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

@@ -30,7 +30,7 @@ class CreateApartmentsTable extends Migration
             $table->string('img');
             $table->string('latitude');
             $table->string('longitude');
-            $table->tinyInteger('visibility');
+            $table->string('visibility');
             $table->timestamps();
         });
     }

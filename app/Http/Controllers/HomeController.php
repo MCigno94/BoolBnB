@@ -26,8 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
-        //dd($apartments);
+        $apartments = Apartment::orderByDesc('id')->get();
 
         return view('home', compact('apartments'));
     }

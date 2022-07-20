@@ -47,6 +47,8 @@ class UserApartmentController extends Controller
      */
     public function store(Request $request)
     {
+
+        //dd($request);
         $validated_data =  $request->validate([
 
             'title' =>'required|string|min:3',
@@ -60,13 +62,17 @@ class UserApartmentController extends Controller
             'street_number' =>'required|numeric|min:1',
             'zip_code' =>'required|numeric|min:1',
             'img' =>'required|image|max:500',
-            'visibility' =>'required|numeric|min:0|max:1',
+            //'visibility' =>'',
             'longitude' => 'required',
             'latitude' => 'required',
        ]);
 
         $data = $request->all();
         
+        if(!$request->has('visibility')) {
+            $data['visibility'] = 'false';
+        }
+
         $img_path = Storage::put('images', $data['img']);
     
         $data['img'] = $img_path;
@@ -135,12 +141,16 @@ class UserApartmentController extends Controller
             'street_number' =>'required|numeric|min:1',
             'zip_code' =>'required|numeric|min:1',
             'img' =>'image|max:1000',
-            'visibility' =>'required|numeric|min:0|max:1',
+            //'visibility' =>'',
             'longitude' => 'required',
             'latitude' => 'required',
         ]);
         
         $data = $request->all();
+        
+        if(!$request->has('visibility')) {
+            $data['visibility'] = 'false';
+        }
         
         if($request->hasFile('img')) { 
 
@@ -150,8 +160,11 @@ class UserApartmentController extends Controller
     
             $data['img'] = $img_path;
         }
+
+        //dd($data);
         
         $apartment->update($data);
+
 
         $servicesId = DB::table('apartment_service')->select('service_id')->where('apartment_id', $apartment->id)->get();
 
@@ -179,6 +192,6 @@ class UserApartmentController extends Controller
     {
         Storage::delete($apartment->img);
         $apartment->delete();
-        return redirect()->route('user.apartments.index');
+        return redirect()->route('user.apartments.index')->with('message', "$apartment->title deleted successfully");
     }
 }

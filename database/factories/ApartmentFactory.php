@@ -19,9 +19,8 @@ $factory->define(apartment::class, function (Faker $faker) {
         'street_number' => $faker->numberBetween(1, 100),
         'zip_code' => "47923",
         'img' => "Case-moderne.jpg",
-        'visibility' => 1,
+        'visibility' => 'true',
         'latitude' => '4444',
         'longitude' => '4444',
-        
     ];
 });

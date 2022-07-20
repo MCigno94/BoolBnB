@@ -4,7 +4,7 @@
 <section class="container my-3">
 
     <!-- NAV ARROWS -->
-    <div class="d-flex justify-content-end gap-3">
+    <!-- <div class="d-flex justify-content-end gap-3">
         <a class="nav-link mb-2" href="#">
             <i class="fa-solid fa-chevron-left fs-2 text-danger"></i>
         </a>
@@ -12,6 +12,15 @@
         <a class="nav-link mb-2" href="#">
             <i class="fa-solid fa-chevron-right fs-2 text-danger"></i>
         </a>
+    </div> -->
+
+    <div class="card">
+
+        <div class="img_container">
+            
+            <img class="apartment_img" src="{{ ($apartment->img === 'Case-moderne.jpg') ? asset('img/Case-moderne.jpg') : asset('storage/' . $apartment->img) }}" alt="{{$apartment->title}}">
+        </div>
+        <h1>{{$apartment->title}}</h1>
     </div>
 
     <!-- BUTTONS -->
@@ -42,6 +51,5 @@
             </form>
         </div>
     </div>
-        <h1 class="mr-2">{{ $apartment->title }}</h1>
 </section>
 @endsection

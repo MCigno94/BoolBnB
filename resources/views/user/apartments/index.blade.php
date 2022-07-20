@@ -50,6 +50,7 @@
                 </ul>
             </div>
         </div>
+
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <h3>Apartments</h3>
             <hr>
@@ -59,20 +60,101 @@
                 </div>
                 @include('partials.message')
             </div>
-            <div class="d-flex flex-wrap gap-4">
+
+            <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Visibility</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse($apartments as $apartment)
+            <tr>
+                <td>{{$apartment->title}}</td>
+                <td>
+                    <img width="150" src="{{ ($apartment->img === 'Case-moderne.jpg') ? asset('img/Case-moderne.jpg') : asset('storage/' . $apartment->img) }}" alt="{{$apartment->title}}">
+                </td>
+                <td>
+                @if ($apartment->visibility === "true") 
+                                {{-- <i class="fas fa-circle mr-2"></i> --}}
+                                <i style="color: green" class="fas fa-circle mx-2"></i>
+                            @else
+                                <i style="color: red" class="fas fa-circle mx-2"></i>
+                            @endif
+
+                </td>
+
+                <td>
+                    <a class="btn btn-primary" href="{{route('user.apartments.show',$apartment->id)}}">Views</a>
+                    <a class="btn btn-secondary" href="{{route('user.apartments.edit',$apartment->id)}}">Edit</a>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-apartment-{{$apartment->id}}">
+                        Delete
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="delete-apartment-{{$apartment->id}}" tabindex="-1" aria-labelledby="modelTitle-{{$apartment->id}}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Delete apartment "<span class="text-primary">{{$apartment->title}}</span>"</h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                                    <form action="{{route('user.apartments.destroy',$apartment->id)}}" method="apartment">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            @empty
+            <tr>
+                <td scope="row">Nothing</td>
+            </tr>
+            @endforelse
+        </tbody>
+    </table>
+
+
+
+    <!-- ------------------------------------------------------------------------------------------ -->
+
+
+
+            
+            <!-- <div class="d-flex flex-wrap gap-4">
                 @foreach($apartments as $apartment)
                 <div class="card">
                     <img src="{{ ($apartment->img === 'Case-moderne.jpg') ? asset('img/Case-moderne.jpg') : asset('storage/' . $apartment->img) }}" alt="{{$apartment->title}}">
                     <div class="card-body">
                         <h2>{{$apartment->title}}</h2>
                         <p>{{$apartment->description}}</p>
-                        <div>{{$apartment->daily_price}}</div>
+                        <div class="visibility">
+                            @if ($apartment->visibility === "true") 
+                                {{-- <i class="fas fa-circle mr-2"></i> --}}
+                                <span class="mx-3"><i style="color: green" class="fas fa-circle mx-2"></i>Visible</span>
+                            @else
+                                <span class="mx-3"><i style="color: red" class="fas fa-circle mx-2"></i> Not Visible</span>
+                            @endif
+                        </div>
 
                         <div class="buttons d-flex justify-content-between">
                             <a class="btn btn-primary" href="{{route('user.apartments.show',$apartment->id)}}">Views</a>
                             <a class="btn btn-secondary" href="{{route('user.apartments.edit',$apartment->id)}}">Edit</a>
 
-                            <form action="{{route('user.apartments.destroy',$apartment->id)}}" method="post">
+                            <form action="{{route('user.apartments.destroy',$apartment->id)}}" method="apartment">
                                 @csrf
                                 @method('DELETE')
 
@@ -83,7 +165,7 @@
 
                 </div>
                 @endforeach
-            </div>
+            </div> -->
         </main>
     </div>
 </div>
