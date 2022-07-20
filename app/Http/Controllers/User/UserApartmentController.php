@@ -20,7 +20,7 @@ class UserApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all()->where('user_id', Auth::id());
+        $apartments = Apartment::orderByDesc('id')->where('user_id', Auth::id())->get();
         //dd($apartments);
 
         return view('user.apartments.index', compact('apartments'));
@@ -63,13 +63,6 @@ class UserApartmentController extends Controller
             'visibility' =>'required|numeric|min:0|max:1'
        ]);
 
-       //dd($request->services);
-        /* if($request->hasFile('img')) { 
-
-            $request->validate([
-                'img' =>'required|image|max:500'
-            ]);
-        } */
         
         $img_path = Storage::put('images', $data['img']);
     
@@ -113,7 +106,11 @@ class UserApartmentController extends Controller
             $ids[]= $id->service_id;
         }
 
-        //dd($array);
+        $user = App\User::find(1);
+ 
+        $user->roles()->attach($roleId);
+        
+        //dd($ids);
 
         return view('user.apartments.edit', compact('apartment', 'services', 'ids'));
     }
@@ -139,17 +136,21 @@ class UserApartmentController extends Controller
             'street' =>'required|string|min:3',
             'street_number' =>'required|numeric|min:9',
             'zip_code' =>'required|numeric|min:1',
-            'img' =>'required|image|max:1000',
+            'img' =>'image|max:1000',
             'visibility' =>'required|numeric|min:0|max:1'
-      ]);
-    
-        Storage::delete($apartment->img);
+        ]);
+        
         $data = $request->all();
+        
+        if($request->hasFile('img')) { 
 
-        $img_path = Storage::put('images', $data['img']);
+            Storage::delete($apartment->img);
 
-        $data['img'] = $img_path;
-
+            $img_path = Storage::put('images', $data['img']);
+    
+            $data['img'] = $img_path;
+        }
+        
         $apartment->update($data);
 
         return redirect()->route('user.apartments.index');

@@ -15,6 +15,9 @@
         </div>
         <div class="form col bg-danger d-flex align-items-center justify-content-center py-5">
             <div class="text-white">
+
+                @include('partials.error')
+
                 <form  action="{{route('user.apartments.update', $apartment->id)}}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -114,7 +117,7 @@
                         <label>
                             <input type="checkbox" name="services[]" value="{{$service->id}}"
                             
-                            {{ (in_array($service->id, $ids)) ? 'checked' : 'class="danger"' }}
+                            {{ (in_array($service->id, $ids)) ? 'checked' : 'class="alert"' }} 
                             
                             >
                             <span>{{ $service->name }}</span>
@@ -124,26 +127,6 @@
 
             
                     <div class="d-flex align-items-center">
-<!--                             DAILY PRICE
-                        <div class="form-group row image m-0 py-1 w-50 pe-3">
-                            <label class="col-form-label px-0" for="daily_price">Daily price</label>
-                            <input class="form-control" type="number" name="daily_price" id="daily_price">
-                        </div> -->
-
-                        <!-- VISIBILITY -->
-                        <!-- <div class="visibility d-flex flex-column gap-2 align ps-3">
-                            <p class="m-0 p-0 pb-1">Make visible</p>
-                            <div class="d-flex gap-5">
-                                <div class="yes">
-                                    <label for="YES"> YES</label>
-                                    <input type="radio" name="visibility" id="YES" value="true">
-                                </div>
-                                <div class="no">
-                                    <label for="NO"> NO</label>
-                                    <input type="radio" name="visibility" id="NO" value="false">
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="visibility">
                             <label for="visibility">visibility </label>
                             <input type="number" name="visibility" id="visibility" value="{{old('visibility', $apartment->visibility)}}">

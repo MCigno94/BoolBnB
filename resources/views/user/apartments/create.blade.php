@@ -112,11 +112,10 @@
 
                     @foreach($services as $service)
                     <div>
-                        <label>
-                            <input type="checkbox" name="services[]" value="{{$service->id}}">
-                            <span>{{ $service->name }}</span>
-                        </div>
-                        @endforeach
+                        <input type="checkbox" name="services[]" value="{{$service->id}}">
+                        <span>{{ $service->name }}</span>
+                    </div>
+                    @endforeach
                     </div>
             
                     <div class="d-flex align-items-center gap-5 pt-4">
