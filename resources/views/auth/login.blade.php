@@ -20,7 +20,7 @@
                     
                     <h2 class="text-center display-4 pb-4">Login</h2>
                     <div class="form-group row">
-                        <label for="email" class="col-form-label text-md-right">{{ __('E-Mail Address') }}  hammes.joey@example.net </label>
+                        <label for="email" class="col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                         <div class="">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="password" class="col-form-label text-md-right">{{ __('Password') }} <b> password </b></label>
+                        <label for="password" class="col-form-label text-md-right">{{ __('Password') }}</label>
 
                         <div class="">
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
