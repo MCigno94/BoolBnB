@@ -37,7 +37,7 @@
                     <div class="form-group row">
                         <label for="email" class="col-form-label text-md-right">{{ __('E-Mail Address *') }}</label>
                         <div class="">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
+                            <input id="email" type="email" required class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
                             @error('email')
                                 <span class="invalid-feedback text-white" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -52,7 +52,7 @@
                     <div class="form-group row">
                         <label for="password" class="col-form-label text-md-right">{{ __('Password *') }}</label>
                         <div class="">
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
+                            <input id="password" required min="8" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
                             @error('password')
                                 <span class="invalid-feedback text-white" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -67,7 +67,7 @@
                     <div class="form-group row">
                         <label for="password-confirm" class="col-form-label text-md-right">{{ __('Confirm Password *') }}</label>
                         <div class="">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
+                            <input id="password-confirm" required type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
                         </div>
                         @error('password')
                             <span class="invalid-feedback text-white" role="alert">

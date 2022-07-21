@@ -26,7 +26,7 @@
                     <!-- TITLE -->
                     <div class="form-group row title m-0 py-1 @error('title') is-invalid @enderror">
                         <label class="col-form-label px-0" for="title">Title</label>
-                        <input class="form-control @error('img') is-invalid @enderror" type="text" name="title" id="title" value="{{old('title', $apartment->title)}}">
+                        <input class="form-control @error('title') is-invalid @enderror" type="text" name="title" id="title" value="{{old('title', $apartment->title)}}">
                         <small class="form-text text-white">{{$errors->first('title')}}</small>
                     </div>    
 
@@ -39,61 +39,34 @@
                         </div>
                     </div>
 
-                    <!-- COUNTRY -->
-                    <div class="form-group row title m-0 py-1">
-                        <label class="col-form-label px-0" for="country">Country</label>
-                        <input class="form-control @error('img') is-invalid @enderror" type="text" name="country" id="country" value="{{old('country', $apartment->country)}}">
-                        <small class="form-text text-white">{{$errors->first('country')}}</small>
-
-                    </div>
-
-                    <!-- CITY -->
-                    <div class="form-group row title m-0 py-1">
-                        <label class="col-form-label px-0" for="city">City</label>
-                        <input class="form-control @error('img') is-invalid @enderror" type="text" name="city" id="city" value="{{old('city', $apartment->city)}}">
-                        <small class="form-text text-white">{{$errors->first('city')}}</small>
-
-                    </div>
-
                     <!-- ADDRESS -->
                     <div class="d-flex gap-4">
                         <div class="form-group row image m-0 py-1">
-                            <label class="col-form-label px-0" for="street">Street</label>
-                            <input class="form-control @error('img') is-invalid @enderror" type="text" name="street" id="street" onkeyup="callStreet()" value="{{old('street', $apartment->street)}}">
-                            <small class="form-text text-white">{{$errors->first('street')}}</small>
-                            <div class="result" hidden></div>
-                        </div>
-                        <div class="form-group row image m-0 py-1">
-                            <label class="col-form-label px-0" for="street_number">Street Number</label>
-                            <input class="form-control @error('img') is-invalid @enderror" type="number" name="street_number" id="street_number" value="{{old('street_number', $apartment->street_number)}}">
-                            <small class="form-text text-white">{{$errors->first('street_number')}}</small>
-                        </div>
-                        <div class="form-group row image m-0 py-1">
-                            <label class="col-form-label px-0" for="zip_code">Zip Code</label>
-                            <input class="form-control @error('img') is-invalid @enderror" type="text" name="zip_code" id="zip_code" value="{{old('zip_code', $apartment->zip_code)}}">
-                            <small class="form-text text-white">{{$errors->first('zip_code')}}</small>
+                            <label class="col-form-label px-0" for="address">Address</label>
+                            <input class="form-control @error('address') is-invalid @enderror" type="text" name="address" id="address">
+                            <small class="form-text text-white">{{$errors->first('address')}}</small>
                         </div>
 
                         <!-- LATITUDE -->
                         <input hidden type="text" class="form-control @error('latitude') is-invalid @enderror mx-5" 
-                        name="latitude" id="latitude" value="{{old('latitude', $apartment->latitude)}}" >
+                        name="latitude" id="latitude" value="{{ old('latitude') }}" >
                         <!-- LONGITUDE -->
                         <input hidden type="text" class="form-control @error('longitude') is-invalid @enderror mx-5" 
-                        name="longitude" id="longitude" value="{{old('longitude', $apartment->longitude)}}">
+                        name="longitude" id="longitude" value="{{ old('longitude') }}">
                     </div>
 
                     <div class="d-flex gap-4">
                         <!-- MQ -->
                         <div class="form-group row image m-0 py-1 w-50">
                             <label class="col-form-label px-0" for="square_meters">SQ</label>
-                            <input class="form-control @error('img') is-invalid @enderror" type="number" name="square_meters" id="square_meters" value="{{old('square_meters', $apartment->square_meters)}}">
+                            <input class="form-control @error('square_meters') is-invalid @enderror" type="number" name="square_meters" id="square_meters" value="{{old('square_meters', $apartment->square_meters)}}">
                             <small class="form-text text-white">{{$errors->first('square_meters')}}</small>
                         </div>
                         
                         <!-- ROOMS -->
                         <div class="form-group row image m-0 py-1 w-50">
                             <label class="col-form-label px-0" for="rooms_number">Rooms</label>
-                            <input class="form-control @error('img') is-invalid @enderror" type="number" name="rooms_number" id="rooms_number" value="{{old('rooms_number', $apartment->rooms_number)}}">
+                            <input class="form-control @error('rooms_number') is-invalid @enderror" type="number" name="rooms_number" id="rooms_number" value="{{old('rooms_number', $apartment->rooms_number)}}">
                             <small class="form-text text-white">{{$errors->first('rooms_number')}}</small>
                         </div>
                     </div>
@@ -102,14 +75,14 @@
                         <!-- BEDS -->
                         <div class="form-group row image m-0 py-1 w-50">
                             <label class="col-form-label px-0" for="beds_number">Beds</label>
-                            <input class="form-control @error('img') is-invalid @enderror" type="number" name="beds_number" id="beds_number" value="{{old('beds_number', $apartment->beds_number)}}">
+                            <input class="form-control @error('beds_number') is-invalid @enderror" type="number" name="beds_number" id="beds_number" value="{{old('beds_number', $apartment->beds_number)}}">
                             <small class="form-text text-white">{{$errors->first('beds_number')}}</small>
                         </div>
                         
                         <!-- BATHROOMS -->
                         <div class="form-group row image m-0 py-1 w-50">
                             <label class="col-form-label px-0" for="bathrooms_number">Bathrooms</label>
-                            <input class="form-control @error('img') is-invalid @enderror" type="number" name="bathrooms_number" id="bathrooms_number" value="{{old('bathrooms_number', $apartment->bathrooms_number)}}">
+                            <input class="form-control @error('bathrooms_number') is-invalid @enderror" type="number" name="bathrooms_number" id="bathrooms_number" value="{{old('bathrooms_number', $apartment->bathrooms_number)}}">
                             <small class="form-text text-white">{{$errors->first('bathrooms_number')}}</small>
                         </div>
                     </div>

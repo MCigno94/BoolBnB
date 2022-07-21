@@ -22,15 +22,11 @@ class CreateApartmentsTable extends Migration
             $table->tinyInteger('beds_number')->nullable();
             $table->tinyInteger('bathrooms_number')->nullable();
             $table->tinyInteger('square_meters')->nullable();
-            $table->string('country');
-            $table->string('city');
-            $table->string('street');
-            $table->tinyInteger('street_number');
-            $table->string('zip_code');
             $table->string('img');
+            $table->string('visibility');
+            $table->string('address');
             $table->string('latitude');
             $table->string('longitude');
-            $table->string('visibility');
             $table->timestamps();
         });
     }
