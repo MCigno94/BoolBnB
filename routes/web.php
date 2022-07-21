@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Apartment;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,8 @@ Auth::routes();
     return view('welcome');
 }); */
 
+Route::get('/', 'HomeController@index')->name('home');
+
 
 Route::middleware('auth')
 ->prefix('user')
@@ -29,11 +32,12 @@ Route::middleware('auth')
     Route::resource('/apartments','UserApartmentController');
 });
 
-Route::get('/', 'HomeController@index')->name('home');
 
 
 /* DEVE SEMPRE ESSERE L'ULTIMA */
-Route::get("{any?}", function ()
+/* Route::get("{any?}", function ()
 {
+   dd(Route::middleware('auth'));
+
     return view('auth.login');
-})->where('any','.*');
+})->where('any','.*');  */
