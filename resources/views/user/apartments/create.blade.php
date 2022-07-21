@@ -81,7 +81,7 @@
                     <div class="d-flex gap-4">
                         <!-- MQ -->
                         <div class="form-group row image m-0 py-1 w-50">
-                            <label class="col-form-label px-0" for="square_meters">SQ</label>
+                            <label class="col-form-label px-0" for="square_meters">SQ*</label>
                             <input  class="form-control @error('square_meters') is-invalid @enderror" 
                                     type="number" name="square_meters" id="square_meters"
                                     min="1"
@@ -93,7 +93,7 @@
                         
                         <!-- ROOMS -->
                         <div class="form-group row image m-0 py-1 w-50">
-                            <label class="col-form-label px-0" for="rooms_number">Rooms</label>
+                            <label class="col-form-label px-0" for="rooms_number">Rooms*</label>
                             <input  class="form-control @error('rooms_number') is-invalid @enderror" 
                                     type="number" name="rooms_number" id="rooms_number"
                                     min="1"
@@ -107,7 +107,7 @@
                     <div class="d-flex gap-4">
                         <!-- BEDS -->
                         <div class="form-group row image m-0 py-1 w-50">
-                            <label class="col-form-label px-0" for="beds_number">Beds</label>
+                            <label class="col-form-label px-0" for="beds_number">Beds*</label>
                             <input  class="form-control @error('beds_number') is-invalid @enderror" 
                                     type="number" name="beds_number" id="beds_number"
                                     min="1"
@@ -119,7 +119,7 @@
                         
                         <!-- BATHROOMS -->
                         <div class="form-group row image m-0 py-1 w-50">
-                            <label class="col-form-label px-0" for="bathrooms_number">Bathrooms</label>
+                            <label class="col-form-label px-0" for="bathrooms_number">Bathrooms*</label>
                             <input  class="form-control @error('bathrooms_number') is-invalid @enderror" 
                                     type="number" name="bathrooms_number" id="bathrooms_number"
                                     min="1"
