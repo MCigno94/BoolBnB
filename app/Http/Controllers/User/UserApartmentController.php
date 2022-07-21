@@ -126,9 +126,9 @@ class UserApartmentController extends Controller
             'rooms_number' =>'required|numeric|min:1',
             'beds_number' =>'required|numeric|min:1',
             'bathrooms_number' =>'required|numeric|min:1',
-            'square_meters' =>'required|numeric|min:9',
+            'square_meters' =>'required|numeric|min:1',
             'address' =>'required|string|min:3',
-            'img' =>'required|image|max:1000',
+            'img' =>'image|max:1000',
         ]);
         
         $data = $request->all();
