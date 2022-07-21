@@ -40,16 +40,36 @@
                     <i class="fa-solid fa-pen-to-square pe-2 text-primary"></i>Edit
                 </a>
             </div>
-            <form action="{{route('user.apartments.destroy', $apartment->id)}}" method="post">
-                @csrf
-                @method('DELETE')
-
-                    <button class="btn" type="submit">
-                        <i class="fa-solid fa-trash pe-2 text-danger"></i>Delete
-                    </button>
-
-            </form>
+            <button class="btn" type="submit" data-bs-toggle="modal" data-bs-target="#delete-apartment-{{$apartment->id}}">
+                <i class="fa-solid fa-trash pe-2 text-danger"></i>Delete
+            </button>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="delete-apartment-{{$apartment->id}}" tabindex="-1" aria-labelledby="modelTitle-{{$apartment->id}}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete apartment "<span class="text-primary">{{$apartment->title}}</span>"</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                        <form action="{{route('user.apartments.destroy',$apartment->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 @endsection
