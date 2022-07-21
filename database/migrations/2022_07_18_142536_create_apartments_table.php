@@ -18,15 +18,15 @@ class CreateApartmentsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('title');
-            $table->tinyInteger('rooms_number')->nullable();
-            $table->tinyInteger('beds_number')->nullable();
-            $table->tinyInteger('bathrooms_number')->nullable();
-            $table->tinyInteger('square_meters')->nullable();
             $table->string('img');
-            $table->string('visibility');
             $table->string('address');
+            $table->tinyInteger('rooms_number');
+            $table->tinyInteger('beds_number');
+            $table->tinyInteger('bathrooms_number');
+            $table->tinyInteger('square_meters');
             $table->string('latitude');
             $table->string('longitude');
+            $table->string('visibility');
             $table->timestamps();
         });
     }

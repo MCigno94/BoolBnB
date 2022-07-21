@@ -50,22 +50,14 @@ class UserApartmentController extends Controller
 
         //dd($request);
         $validated_data =  $request->validate([
-
-            'title' =>'required|string|min:3',
+            'title' =>'required|string',
             'rooms_number' =>'required|numeric|min:1',
             'beds_number' =>'required|numeric|min:1',
             'bathrooms_number' =>'required|numeric|min:1',
-            'square_meters' =>'required|numeric|min:9',
-            'country' =>'required|string|min:3',
-            'city' =>'required|string|min:3',
-            'street' =>'required|string|min:3',
-            'street_number' =>'required|numeric|min:1',
-            'zip_code' =>'required|numeric|min:1',
-            'img' =>'required|image|max:500',
-            //'visibility' =>'',
-            'longitude' => 'required',
-            'latitude' => 'required',
-       ]);
+            'square_meters' =>'required|numeric|min:1',
+            'address' =>'required|string|min:1',
+            'img' =>'required|image|max:1000',
+        ]);
 
         $data = $request->all();
         
@@ -130,20 +122,13 @@ class UserApartmentController extends Controller
     {
 
         $validated_data =  $request->validate([
-            'title' =>'required|string|min:3',
+            'title' =>'required|string',
             'rooms_number' =>'required|numeric|min:1',
             'beds_number' =>'required|numeric|min:1',
             'bathrooms_number' =>'required|numeric|min:1',
             'square_meters' =>'required|numeric|min:9',
-            'country' =>'required|string|min:3',
-            'city' =>'required|string|min:3',
-            'street' =>'required|string|min:3',
-            'street_number' =>'required|numeric|min:1',
-            'zip_code' =>'required|numeric|min:1',
-            'img' =>'image|max:1000',
-            //'visibility' =>'',
-            'longitude' => 'required',
-            'latitude' => 'required',
+            'address' =>'required|string|min:3',
+            'img' =>'required|image|max:1000',
         ]);
         
         $data = $request->all();
