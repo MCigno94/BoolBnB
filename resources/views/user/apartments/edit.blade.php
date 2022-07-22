@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
-@section('content')
+@section('js')
 
+    <script src="{{ asset('js/btn.js')}}" async> </script>
+
+@endsection
+
+@section('content')
 
 <div class="container ct-form bg-white bg-md-gray">
     <div class="row row-cols-1 row-cols-md-2 h-100 align-items-center justify-content-center">
@@ -140,7 +145,7 @@
                     
                     @foreach($services as $service)
                         <div class="col">
-                            <input type="checkbox" name="services[]" value="{{$service->id}}" {{ (in_array($service->id, $ids)) ? 'checked' : 'class="alert"' }}>
+                            <input class="check_service" type="checkbox" name="services[]" value="{{$service->id}}" {{ (in_array($service->id, $ids)) ? 'checked' : 'class="alert"' }}>
                             <span>
                                 <span>
                                     <i class="{{ $service->icon }} ps-1 pe-3" style="width: 8px;"></i>
@@ -163,10 +168,11 @@
                         <button id="btnCreate" class="btn btn-light text-danger fw-bold w-25" type="submit"
                         >EDIT</button>
                     </div>
-
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
+    

@@ -18,7 +18,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    
+    @yield('js')
+
 </head>
+
 <body>
     <div id="app">
         @include('components.navbar')
@@ -66,6 +71,7 @@
                 });
             })
         }
+
     </script>
     
 </body>
