@@ -15,7 +15,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {   
-        $apartments = Apartment::orderByDesc('id')->with('service')->simplePaginate(5);
+        $apartments = Apartment::orderByDesc('id')->with('service')->simplePaginate(24);
         return $apartments;
 
     }

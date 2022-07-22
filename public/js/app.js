@@ -5117,9 +5117,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/apartments').then(function (res) {
-        var apart = res.data;
+        var apart = res.data.data;
         _this.apartments = apart;
-        console.log(apart);
+        console.log(_this.apartments);
       });
     }
   },
@@ -5145,7 +5145,42 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("h1", [_vm._v("ciao")]);
+  return _c("section", {
+    staticClass: "container"
+  }, [_c("div", {
+    staticClass: "row py-4 gy-5"
+  }, _vm._l(_vm.apartments, function (apartment) {
+    return _c("div", {
+      key: apartment.id,
+      staticClass: "col"
+    }, [_c("div", {
+      staticClass: "card",
+      staticStyle: {
+        width: "18rem"
+      }
+    }, [_c("img", {
+      staticClass: "card-img-top",
+      attrs: {
+        src: "storage/".concat(apartment.img),
+        alt: ""
+      }
+    }), _vm._v(" "), _c("div", {
+      staticClass: "card-body"
+    }, [_c("h5", {
+      staticClass: "card-title"
+    }, [_vm._v(_vm._s(apartment.title))]), _vm._v(" "), _c("p", {
+      staticClass: "card-text"
+    }, [_vm._v(_vm._s(apartment.address))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(apartment.rooms_number))]), _vm._v(" "), _c("font-awesome-icon", {
+      attrs: {
+        icon: "fa-solid fa-bed"
+      }
+    }), _vm._v(" "), _c("p", [_vm._v(_vm._s(apartment.beds_number))]), _vm._v(" "), _c("a", {
+      staticClass: "btn btn-danger",
+      attrs: {
+        href: "#"
+      }
+    }, [_vm._v("INFO")])], 1)])]);
+  }), 0)]);
 };
 
 var staticRenderFns = [];
