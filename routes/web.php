@@ -20,7 +20,7 @@ Auth::routes();
     return view('welcome');
 }); */
 
-Route::get('/', 'HomeController@index')->name('home');
+//Route::get('/', 'HomeController@index')->name('home');
 
 
 Route::middleware('auth')
@@ -32,12 +32,12 @@ Route::middleware('auth')
     Route::resource('/apartments','UserApartmentController');
 });
 
-
+Route::get("/", function(){
+    return view('guest.home');
+})->name('home');
 
 /* DEVE SEMPRE ESSERE L'ULTIMA */
-/* Route::get("{any?}", function ()
+ Route::get("{any?}", function ()
 {
-   dd(Route::middleware('auth'));
-
-    return view('auth.login');
-})->where('any','.*');  */
+    return view('guest.home');
+})->where('any','.*');  

@@ -3,5 +3,6 @@
     "/css/app.css": "/css/app.css",
     "/css/dashboard.css": "/css/dashboard.css",
     "/css/login-register.css": "/css/login-register.css",
-    "/js/btn.js": "/js/btn.js"
+    "/js/btn.js": "/js/btn.js",
+    "/js/front.js": "/js/front.js"
 }
