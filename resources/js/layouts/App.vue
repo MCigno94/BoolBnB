@@ -20,8 +20,8 @@
         Advanced Search
       </router-link>
     </div>
-    <div class="container">
-      <div class="row py-4 gy-5">
+    <div class="container my-5 px-4">
+      <div class="row my-5 gy-3">
         <div class="col" v-for="apartment in apartments" :key="apartment.id">
           <div class="card" style="width: 18rem">
             <img
@@ -76,7 +76,7 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.468);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
   input {
     width: 30%;
     border-radius: 10px;
@@ -88,6 +88,11 @@ export default {
   .advancedSearch{
     text-shadow: 1px 1px black;
   }
+}
+
+.container {
+  background-color: white;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
 }
 
 </style>

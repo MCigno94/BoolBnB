@@ -5150,9 +5150,9 @@ var render = function render() {
   }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c("router-link", {
     staticClass: "advancedSearch text-danger"
   }, [_vm._v("\n      Advanced Search\n    ")])], 1), _vm._v(" "), _c("div", {
-    staticClass: "container"
+    staticClass: "container my-5 px-4"
   }, [_c("div", {
-    staticClass: "row py-4 gy-5"
+    staticClass: "row my-5 gy-3"
   }, _vm._l(_vm.apartments, function (apartment) {
     return _c("div", {
       key: apartment.id,
@@ -10459,7 +10459,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".jumbotron[data-v-9087fe26] {\n  height: 500px;\n  background-image: url(\"https://www.dailynautica.com/wp-content/uploads/2018/01/zakynthos__imperialspavilla_09.jpg\");\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  box-shadow: 0 0 30px rgba(0, 0, 0, 0.468);\n}\n.jumbotron input[data-v-9087fe26] {\n  width: 30%;\n  border-radius: 10px;\n  border: none;\n}\n.jumbotron h1[data-v-9087fe26] {\n  text-shadow: 3px 3px black;\n}\n.jumbotron .advancedSearch[data-v-9087fe26] {\n  text-shadow: 1px 1px black;\n}", ""]);
+exports.push([module.i, ".jumbotron[data-v-9087fe26] {\n  height: 500px;\n  background-image: url(\"https://www.dailynautica.com/wp-content/uploads/2018/01/zakynthos__imperialspavilla_09.jpg\");\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);\n}\n.jumbotron input[data-v-9087fe26] {\n  width: 30%;\n  border-radius: 10px;\n  border: none;\n}\n.jumbotron h1[data-v-9087fe26] {\n  text-shadow: 3px 3px black;\n}\n.jumbotron .advancedSearch[data-v-9087fe26] {\n  text-shadow: 1px 1px black;\n}\n.container[data-v-9087fe26] {\n  background-color: white;\n  box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);\n}", ""]);
 
 // exports
 
