@@ -9,9 +9,8 @@
 </head>
 <body>
     @include('components.navbar')
-    <div id="root">
-
-    </div>
+    <div id="root"></div>
+    @include('components.footer')
     <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('js/front.js')}}"></script>
 </body>

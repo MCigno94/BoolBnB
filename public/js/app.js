@@ -5152,38 +5152,34 @@ var render = function render() {
   }, [_vm._v("\n      Advanced Search\n    ")])], 1), _vm._v(" "), _c("div", {
     staticClass: "container my-5 px-4"
   }, [_c("div", {
-    staticClass: "row my-5 gy-3"
+    staticClass: "row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 my-5 gy-3"
   }, _vm._l(_vm.apartments, function (apartment) {
     return _c("div", {
       key: apartment.id,
-      staticClass: "col"
+      staticClass: "col d-flex justify-content-center"
     }, [_c("div", {
-      staticClass: "card",
-      staticStyle: {
-        width: "18rem"
-      }
+      staticClass: "my-card pt-3"
+    }, [_c("div", {
+      staticClass: "img"
     }, [_c("img", {
-      staticClass: "card-img-top",
+      staticClass: "my-card-img",
       attrs: {
         src: "storage/".concat(apartment.img),
         alt: ""
       }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "card-body"
-    }, [_c("h5", {
-      staticClass: "card-title"
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "my-card-body d-flex flex-column"
+    }, [_c("p", {
+      staticClass: "title fw-bold pb-1"
     }, [_vm._v(_vm._s(apartment.title))]), _vm._v(" "), _c("p", {
-      staticClass: "card-text"
-    }, [_vm._v(_vm._s(apartment.address))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(apartment.rooms_number))]), _vm._v(" "), _c("font-awesome-icon", {
-      attrs: {
-        icon: "fa-solid fa-bed"
-      }
-    }), _vm._v(" "), _c("p", [_vm._v(_vm._s(apartment.beds_number))]), _vm._v(" "), _c("a", {
-      staticClass: "btn btn-danger",
-      attrs: {
-        href: "#"
-      }
-    }, [_vm._v("View")])], 1)])]);
+      staticClass: "address text-secondary"
+    }, [_vm._v(_vm._s(apartment.address))]), _vm._v(" "), _c("div", {
+      staticClass: "d-flex gap-3 text-secondary pt-2"
+    }, [_c("p", {
+      staticClass: "rooms"
+    }, [_vm._v("Rooms: " + _vm._s(apartment.rooms_number))]), _vm._v(" "), _c("p", {
+      staticClass: "beds"
+    }, [_vm._v("Beds: " + _vm._s(apartment.beds_number))])])])])]);
   }), 0)])]);
 };
 
@@ -10459,7 +10455,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".jumbotron[data-v-9087fe26] {\n  height: 500px;\n  background-image: url(\"https://www.dailynautica.com/wp-content/uploads/2018/01/zakynthos__imperialspavilla_09.jpg\");\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);\n}\n.jumbotron input[data-v-9087fe26] {\n  width: 30%;\n  border-radius: 10px;\n  border: none;\n}\n.jumbotron h1[data-v-9087fe26] {\n  text-shadow: 3px 3px black;\n}\n.jumbotron .advancedSearch[data-v-9087fe26] {\n  text-shadow: 1px 1px black;\n}\n.container[data-v-9087fe26] {\n  background-color: white;\n  box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);\n}", ""]);
+exports.push([module.i, ".jumbotron[data-v-9087fe26] {\n  height: 500px;\n  background-image: url(\"https://a0.muscache.com/im/pictures/1871687b-fc5b-47eb-a70b-99011f46593d.jpg?im_w=1440\");\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);\n}\n.jumbotron input[data-v-9087fe26] {\n  width: 30%;\n  border-radius: 10px;\n  border: none;\n}\n.jumbotron h1[data-v-9087fe26] {\n  text-shadow: 3px 3px black;\n}\n.jumbotron .advancedSearch[data-v-9087fe26] {\n  text-shadow: 1px 1px black;\n}\n.container[data-v-9087fe26] {\n  background-color: white;\n  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);\n}\n\n/* CARD */\n.col[data-v-9087fe26] {\n  border-radius: 15px;\n  transition: all 0.3s ease-in-out;\n  cursor: pointer;\n}\n.col[data-v-9087fe26]:hover {\n  background-color: rgba(207, 207, 207, 0.308);\n}\n.col:hover img[data-v-9087fe26] {\n  transform: scale(1.05);\n}\n.col .my-card[data-v-9087fe26] {\n  transition: all 0.4s ease-in-out;\n  position: relative;\n}\n.col .my-card p[data-v-9087fe26] {\n  padding: 0;\n  margin: 0;\n}\n.col .my-card .img[data-v-9087fe26] {\n  overflow: hidden;\n  border-radius: 15px;\n}\n.col .my-card .img img[data-v-9087fe26] {\n  transition: all 0.3s ease-in-out;\n  width: 100%;\n  aspect-ratio: 1/1;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.col .my-card .my-card-body[data-v-9087fe26] {\n  height: 150px;\n  padding: 10px;\n}", ""]);
 
 // exports
 
@@ -54291,15 +54287,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!**************************************!*\
   !*** ./resources/js/layouts/App.vue ***!
   \**************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _App_vue_vue_type_template_id_9087fe26_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.vue?vue&type=template&id=9087fe26&scoped=true& */ "./resources/js/layouts/App.vue?vue&type=template&id=9087fe26&scoped=true&");
 /* harmony import */ var _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.vue?vue&type=script&lang=js& */ "./resources/js/layouts/App.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _App_vue_vue_type_style_index_0_id_9087fe26_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.vue?vue&type=style&index=0&id=9087fe26&lang=scss&scoped=true& */ "./resources/js/layouts/App.vue?vue&type=style&index=0&id=9087fe26&lang=scss&scoped=true&");
+/* empty/unused harmony star reexport *//* harmony import */ var _App_vue_vue_type_style_index_0_id_9087fe26_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.vue?vue&type=style&index=0&id=9087fe26&lang=scss&scoped=true& */ "./resources/js/layouts/App.vue?vue&type=style&index=0&id=9087fe26&lang=scss&scoped=true&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -54331,7 +54326,7 @@ component.options.__file = "resources/js/layouts/App.vue"
 /*!***************************************************************!*\
   !*** ./resources/js/layouts/App.vue?vue&type=script&lang=js& ***!
   \***************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54415,10 +54410,10 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/progetto finale/boolBnB/BoolBnB/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Applications/MAMP/htdocs/progetto finale/boolBnB/BoolBnB/resources/sass/app.scss */"./resources/sass/app.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/progetto finale/boolBnB/BoolBnB/resources/sass/dashboard.scss */"./resources/sass/dashboard.scss");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/progetto finale/boolBnB/BoolBnB/resources/sass/login-register.scss */"./resources/sass/login-register.scss");
+__webpack_require__(/*! C:\Users\qwerty\Desktop\BoolBnB\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\qwerty\Desktop\BoolBnB\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\qwerty\Desktop\BoolBnB\resources\sass\dashboard.scss */"./resources/sass/dashboard.scss");
+module.exports = __webpack_require__(/*! C:\Users\qwerty\Desktop\BoolBnB\resources\sass\login-register.scss */"./resources/sass/login-register.scss");
 
 
 /***/ })

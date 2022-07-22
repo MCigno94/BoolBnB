@@ -21,21 +21,23 @@
       </router-link>
     </div>
     <div class="container my-5 px-4">
-      <div class="row my-5 gy-3">
-        <div class="col" v-for="apartment in apartments" :key="apartment.id">
-          <div class="card" style="width: 18rem">
-            <img
-              :src="`storage/${apartment.img}`"
-              class="card-img-top"
-              alt=""
-            />
-            <div class="card-body">
-              <h5 class="card-title">{{ apartment.title }}</h5>
-              <p class="card-text">{{ apartment.address }}</p>
-              <p>{{ apartment.rooms_number }}</p>
-              <font-awesome-icon icon="fa-solid fa-bed" />
-              <p>{{ apartment.beds_number }}</p>
-              <a href="#" class="btn btn-danger">View</a>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 my-5 gy-3">
+        <div class="col d-flex justify-content-center" v-for="apartment in apartments" :key="apartment.id">
+          <div class="my-card pt-3">
+            <div class="img">
+                <img
+                :src="`storage/${apartment.img}`"
+                class="my-card-img"
+                alt=""
+              />
+            </div>
+            <div class="my-card-body d-flex flex-column">
+              <p class="title fw-bold pb-1">{{ apartment.title }}</p>
+              <p class="address text-secondary">{{ apartment.address }}</p>
+              <div class="d-flex gap-3 text-secondary pt-2">
+                <p class="rooms">Rooms: {{ apartment.rooms_number }}</p>
+                <p class="beds">Beds: {{ apartment.beds_number }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -72,11 +74,11 @@ export default {
 <style lang="scss" scoped>
 .jumbotron {
   height: 500px;
-  background-image: url("https://www.dailynautica.com/wp-content/uploads/2018/01/zakynthos__imperialspavilla_09.jpg");
+  background-image: url("https://a0.muscache.com/im/pictures/1871687b-fc5b-47eb-a70b-99011f46593d.jpg?im_w=1440");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
   input {
     width: 30%;
     border-radius: 10px;
@@ -92,7 +94,34 @@ export default {
 
 .container {
   background-color: white;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
 }
 
+/* CARD */
+.col{
+  border-radius: 15px;
+  transition: all .3s ease-in-out;
+  &:hover {background-color: rgba(207, 207, 207, 0.308);}
+  &:hover img{transform: scale(1.05);}
+  cursor: pointer;
+  .my-card{
+    transition: all .4s ease-in-out;
+    position: relative;
+    p{padding: 0; margin: 0;}
+    .img{
+      overflow: hidden;
+      border-radius: 15px;
+      img{
+        transition: all .3s ease-in-out;
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+      }
+    }
+    .my-card-body{
+      height: 150px;
+      padding: 10px;
+    }
+  }
+}
 </style>
