@@ -29,6 +29,6 @@ btn.addEventListener('click', function(e) {
     }
     if (count === 0) {
         e.preventDefault();
-        alert('Cazzo funziona')
+        document.getElementById('check-err').removeAttribute('hidden')
     }
 })
