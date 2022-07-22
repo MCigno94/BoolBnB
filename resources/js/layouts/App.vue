@@ -3,8 +3,29 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: 'App'
+  name: 'App',
+  data(){
+    return{
+      apartments: [],
+    }
+  },
+  methods:{
+    callAPI(){
+      axios
+      .get('api/apartments')
+      .then((res) =>{
+        let apart = res.data
+        this.apartments = apart
+        console.log(apart);
+      })
+    }
+  },
+  mounted(){
+    this.callAPI()
+  }
 }
 </script>
 
