@@ -11,6 +11,22 @@ window.Vue = require('vue');
 import App from './layouts/App';
 
 
+/* import the fontawesome core */
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+/* import font awesome icon component */
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+/* import specific icons */
+import { faBed, faDoorClosed } from '@fortawesome/free-solid-svg-icons'
+
+/* add icons to the library */
+library.add( faBed, faDoorClosed)
+
+/* add font awesome icon component */
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

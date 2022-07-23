@@ -1,26 +1,26 @@
 <template>
   <section>
-    <div
-      class="
-        jumbotron
-        d-flex
-        flex-column
-        justify-content-center
-        align-items-center
-      "
-    >
-      <div class="cta">
-        <h1 class="display-3 text-light text-center">Trova la tua destinazione da sogno</h1>
+    <div class="jumbotron  d-flex flex-column align-items-center justify-content-center">
+      <div class="jumbo-img">
+
       </div>
-      <div class="searchbox w-100 d-flex justify-content-center gap-2">
-        <input type="text" name="" id="" />
-        <button class="btn btn-danger text-white">Search</button>
+
+      <div class="jumbo-text d-flex flex-column align-items-center mx-4 gap-5">
+        <div class="cta">
+          <h1 class="display-3 text-light text-center">Search your favourite location</h1>
+        </div>
+        <div class="search">
+          <div class="searchbox w-100 d-flex justify-content-center gap-2 mb-2">
+            <input type="text" name="" id="" />
+            <button class="btn btn-danger text-white">Search</button>
+          </div>
+          <router-link class="advancedSearch text-white text-decoration-underline">
+            Advanced Search
+          </router-link>
+        </div>
       </div>
-      <router-link class="advancedSearch text-danger">
-        Advanced Search
-      </router-link>
     </div>
-    <div class="container my-5 px-4">
+    <div class="container my-5">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 my-5 gy-3">
         <div class="col d-flex justify-content-center" v-for="apartment in apartments" :key="apartment.id">
           <div class="my-card pt-3">
@@ -34,9 +34,13 @@
             <div class="my-card-body d-flex flex-column">
               <p class="title fw-bold pb-1">{{ apartment.title }}</p>
               <p class="address text-secondary">{{ apartment.address }}</p>
-              <div class="d-flex gap-3 text-secondary pt-2">
-                <p class="rooms">Rooms: {{ apartment.rooms_number }}</p>
-                <p class="beds">Beds: {{ apartment.beds_number }}</p>
+              <div class="d-flex gap-4 text-secondary pt-2">
+                <p class="rooms  d-flex gap-2 align-items-center">
+                  <font-awesome-icon class="icon" icon="fa-solid fa-door-closed" /> 
+                  {{ apartment.rooms_number }}</p>
+                <p class="beds d-flex gap-2 align-items-center">
+                  <font-awesome-icon class="icon" icon="fa-solid fa-bed" /> 
+                  {{ apartment.beds_number }}</p>
               </div>
             </div>
           </div>
@@ -47,8 +51,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: "App",
   data() {
@@ -73,14 +75,25 @@ export default {
 
 <style lang="scss" scoped>
 .jumbotron {
-  height: 500px;
-  background-image: url("https://a0.muscache.com/im/pictures/1871687b-fc5b-47eb-a70b-99011f46593d.jpg?im_w=1440");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  position: relative;
+  height: 600px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+  .jumbo-img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url("https://img5.goodfon.com/wallpaper/nbig/c/da/devushka-eda-gory-shary-podushki-stol-frukty.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: brightness(70%);
+  }
+  .search{
+    width: 60%;
+  }
   input {
-    width: 30%;
+    width: 100%;
     border-radius: 10px;
     border: none;
   }
@@ -91,10 +104,8 @@ export default {
     text-shadow: 1px 1px black;
   }
 }
-
-.container {
-  background-color: white;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+.advancedSearch{
+  
 }
 
 /* CARD */
@@ -103,6 +114,12 @@ export default {
   transition: all .3s ease-in-out;
   &:hover {background-color: rgba(207, 207, 207, 0.308);}
   &:hover img{transform: scale(1.05);}
+  .icon, .rooms, .beds{transition: all .3s ease-in-out;}
+  &:hover .icon{color: rgb(0, 140, 255);}
+  &:hover .rooms, 
+  &:hover .beds{
+    color: black;
+  }
   cursor: pointer;
   .my-card{
     transition: all .4s ease-in-out;
