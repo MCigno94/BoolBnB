@@ -4,9 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Apartment;
 
-class ApartmentController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,9 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $apartments = Apartment::orderByDesc('id')->with('service')->simplePaginate(24);
-        return $apartments;
+    {
+        $services= Service::all();
+        return $services;
     }
 
     /**
@@ -48,7 +47,7 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        $apartment = Apartment::with(['services'])->where('id', $id)->first();
+        //
     }
 
     /**

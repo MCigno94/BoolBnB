@@ -108,7 +108,20 @@ class UserApartmentController extends Controller
      */
     public function show(apartment $apartment)
     {
-        return view('user.apartments.show', compact('apartment'));
+        $services = Service::all();
+
+        $servicesId = DB::table('apartment_service')->select('service_id')->where('apartment_id', $apartment->id)->get();
+
+        //dd($servicesId);
+        $ids= [];
+
+        foreach ($servicesId as $id) {
+            $ids[] = $id->service_id;
+        }
+
+        //dd($ids);
+
+        return view('user.apartments.show', compact('apartment', 'services', 'ids'));
     }
 
     /**
@@ -127,9 +140,7 @@ class UserApartmentController extends Controller
 
         foreach ($servicesId as $id) {
             $ids[]= $id->service_id;
-        }
-
-        
+        }        
 
         return view('user.apartments.edit', compact('apartment', 'services', 'ids'));
     }

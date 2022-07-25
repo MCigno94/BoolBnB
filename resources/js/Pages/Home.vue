@@ -15,7 +15,7 @@
                 </div> -->
             </div>
         </div>
-         <advanced-search/>
+         
         <div class="container my-5">
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 my-5 gy-3">
                 <div class="col d-flex justify-content-center" v-for="apartment in apartments" :key="apartment.id">
@@ -43,11 +43,11 @@
 </template>
 
 <script>
-import AdvancedSearch from './AdvancedSearch.vue';
+//import AdvancedSearch from './AdvancedSearch.vue';
 
 
 export default {
-  components: { AdvancedSearch },
+ // components: { AdvancedSearch },
 
     
     name: "Home",

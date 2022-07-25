@@ -1,8 +1,7 @@
 <?php
 
 return [
-    "services" =>
-    [
+    "services" => [
         [
             "name" => "Wifi",
             "icon" => "fa-solid fa-wifi"
@@ -51,5 +50,34 @@ return [
             "name" => "Self check-in",
             "icon" => "fa-solid fa-building-circle-check"
         ],
-    ]
-    ];
+    ],
+
+    'messages' => [
+        [
+            'name' => 'Mattia',
+            'email' => 'Mattia@gmail.com',
+            'content' => 'Ciao sono Mattia'
+        ],
+        [
+            'name' => 'Viktor',
+            'email' => 'Viktor@gmail.com',
+            'content' => 'Ciao sono Viktor'
+        ],
+        [
+            'name' => 'Dragan',
+            'email' => 'Dragan@gmail.com',
+            'content' => 'Ciao sono Dragan'
+        ],
+        [
+            'name' => 'Arianna',
+            'email' => 'Arianna@gmail.com',
+            'content' => 'Ciao sono Arianna'
+        ],
+        [
+            'name' => 'Aurel',
+            'email' => 'Aurel@gmail.com',
+            'content' => 'Ciao sono Aurel'
+        ],
+
+    ],
+];

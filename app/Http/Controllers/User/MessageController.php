@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Message;
 use Illuminate\Http\Request;
-use App\Models\Apartment;
 
-class ApartmentController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,9 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $apartments = Apartment::orderByDesc('id')->with('service')->simplePaginate(24);
-        return $apartments;
+    {
+        $messages = Message::orderBy('email')->orderByDesc('created_at')->where('apartment_id', $apartment->id)->get();
+        return view('admin.messages.index', compact('messages'));
     }
 
     /**
@@ -43,21 +42,21 @@ class ApartmentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Message $message)
     {
-        $apartment = Apartment::with(['services'])->where('id', $id)->first();
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Message $message)
     {
         //
     }
@@ -66,10 +65,10 @@ class ApartmentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Message $message)
     {
         //
     }
@@ -77,10 +76,10 @@ class ApartmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Message $message)
     {
         //
     }

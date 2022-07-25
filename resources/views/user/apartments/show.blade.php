@@ -56,6 +56,15 @@
             </button>
         </div>
 
+        @foreach($apartment->services as $service)
+        <div class="col">
+                <span>
+                    <i class="{{ $service->icon }} ps-1 pe-3" style="width: 8px;"></i>
+                </span>
+                <span>{{ $service->name }}</span>
+        </div>
+        @endforeach
+
         <!-- Modal -->
         <div class="modal fade" id="delete-apartment-{{$apartment->id}}" tabindex="-1" aria-labelledby="modelTitle-{{$apartment->id}}" aria-hidden="true">
             <div class="modal-dialog">

@@ -371,7 +371,7 @@ marker.setPopup(popup).togglePopup();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/progetto finale/boolBnB/BoolBnB/resources/js/search.js */"./resources/js/search.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\Laravel\boolBnB\resources\js\search.js */"./resources/js/search.js");
 
 
 /***/ })
