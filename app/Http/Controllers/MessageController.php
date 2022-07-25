@@ -15,6 +15,7 @@ class MessageController extends Controller
     public function index()
     {
         $messages = Message::orderBy('email')->orderByDesc('created_at')->where('apartment_id', $apartment->id)->get();
+        dd($messages);
         return view('admin.messages.index', compact('messages'));
     }
 

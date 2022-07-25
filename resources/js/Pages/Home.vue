@@ -1,5 +1,6 @@
 <template>
     <section>
+
         <div class="jumbotron  d-flex flex-column align-items-center justify-content-center">
             <div class="jumbo-img"></div>
             <div class="jumbo-text d-flex flex-column align-items-center mx-4 gap-5">
@@ -16,13 +17,19 @@
             </div>
         </div>
          
-        <div class="container my-5">
+         
+        <div class="container my-5" v-if="showApartment === ''" >
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 my-5 gy-3">
                 <div class="col d-flex justify-content-center" v-for="apartment in apartments" :key="apartment.id">
                     <div class="my-card pt-3">
                         <div class="img">
                             <img :src="`storage/${apartment.img}`" class="my-card-img" alt=""/>
                         </div>
+
+
+
+                        <button type="submit" @click="id = apartment.id"> show </button>
+                        
                         <div class="my-card-body d-flex flex-column">
                             <p class="title fw-bold pb-1">{{ apartment.title }}</p>
                             <p class="address text-secondary">{{ apartment.address }}</p>
@@ -39,6 +46,10 @@
                 </div>
             </div>
         </div>
+        <div v-else>
+            <h1>ciao</h1>
+            <h1>{{showApartment.title}}</h1>
+        </div>
     </section>
 </template>
 
@@ -48,51 +59,56 @@
 
 export default {
  // components: { AdvancedSearch },
-
-    
     name: "Home",
     props: ['apartments'],
     data(){
         return{
             value: '',
+            showApartment: {},
+            id: '2'
         }
     },
     methods: {
-        search(){
-            this.apartment.title.filter(function(){
-                return this.value
+        /* getApartment() {
+        axios
+            .get("/api/apartment/" + this.$route.params.id, {
+            params: {
+                lat: 44.78993000,
+                lon: 11.57065000,
+                radius: 20000
+            },
             })
-                console.log(this.apartments);
-        },
-        getApartment() {
-      axios
-        .get("/api/apartment/" + this.$route.params.id, {
-          params: {
-            lat: 44.78993000,
-            lon: 11.57065000,
-            radius: 20000
-          },
-        })
-        .then((response) => {
-          console.log(response);
-          if (response.data.status_code === 404) {
-            this.loading = false;
-            this.$router.push({ name: "not-found" });
-          } else {
-            this.apartment = response.data;
-            this.loading = false;
-          }
-        })
-        .catch((e) => {
-          console.error(e);
-        });
-    },
+            .then((response) => {
+            console.log(response);
+            if (response.data.status_code === 404) {
+                this.loading = false;
+                this.$router.push({ name: "not-found" });
+            } else {
+                this.apartment = response.data;
+                this.loading = false;
+            }
+            })
+            .catch((e) => {
+            console.error(e);
+            });
+        }, */
+        
+        apartment() {
+            //console.log('funziona');
+            axios.get(`api/apartments/${this.id}`)
+            .then((res) => {
+                //console.log(res.data);
+                this.showApartment = res.data;
+                console.log(this.showApartment);
+            });
+        }
+
     },
     mounted(){
-        this.search(),
-        this.getApartment()
-        console.log(this.$route.params.id);
-
+        if(this.id !== ''){
+            this.apartment();
+            console.log(this.showApartment);
+        }
     },
 };
 </script>

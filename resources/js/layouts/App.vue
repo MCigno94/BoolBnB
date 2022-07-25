@@ -7,7 +7,9 @@
 <script>
 import Home from '../Pages/Home.vue';
 export default {
-  components: {Home},
+  components: {
+    Home
+    },
   name: "App",
   data() {
     return {
@@ -21,7 +23,8 @@ export default {
         this.apartments = apart;
         //console.log(this.apartments);
       });
-    },
+    }
+
   },
   mounted() {
     this.callAPI();

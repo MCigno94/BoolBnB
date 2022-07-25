@@ -328,8 +328,8 @@ process.umask = function() { return 0; };
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tomtom_international_web_sdk_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tomtom-international/web-sdk-services */ "./node_modules/@tomtom-international/web-sdk-services/dist/services.min.js");
 /* harmony import */ var _tomtom_international_web_sdk_services__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_tomtom_international_web_sdk_services__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _tomtom_international_web_sdk_plugin_searchbox__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @tomtom-international/web-sdk-plugin-searchbox */ "./node_modules/@tomtom-international/web-sdk-plugin-searchbox/dist/SearchBox.js");
-/* harmony import */ var _tomtom_international_web_sdk_plugin_searchbox__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_tomtom_international_web_sdk_plugin_searchbox__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _tomtom_international_web_sdk_plugin_searchbox__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @tomtom-international/web-sdk-plugin-searchbox */ "./node_modules/@tomtom-international/web-sdk-plugin-searchbox/dist/SearchBox.js");
+/* harmony import */ var _tomtom_international_web_sdk_plugin_searchbox__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_tomtom_international_web_sdk_plugin_searchbox__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @tomtom-international/web-sdk-maps */ "./node_modules/@tomtom-international/web-sdk-maps/dist/maps.min.js");
 /* harmony import */ var _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_2__);
 
@@ -371,11 +371,7 @@ marker.setPopup(popup).togglePopup();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 module.exports = __webpack_require__(/*! C:\MAMP\htdocs\Laravel\boolBnB\resources\js\search.js */"./resources/js/search.js");
-=======
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel/BoolBnB/resources/js/search.js */"./resources/js/search.js");
->>>>>>> 85a6767836fcbdf2695fcc6fb4938c9b137e5e8d
 
 
 /***/ })

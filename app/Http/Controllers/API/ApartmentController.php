@@ -48,7 +48,8 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        $apartment = Apartment::with(['services'])->where('id', $id)->first();
+        $apartment = Apartment::orderByDesc('id')->where('id', $id)->with('service')->get();
+        return $apartment;
     }
 
     /**

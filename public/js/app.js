@@ -20138,46 +20138,51 @@ __webpack_require__.r(__webpack_exports__);
   props: ['apartments'],
   data: function data() {
     return {
-      value: ''
+      value: '',
+      showApartment: {},
+      id: '2'
     };
   },
   methods: {
-    search: function search() {
-      this.apartment.title.filter(function () {
-        return this.value;
-      });
-      console.log(this.apartments);
-    },
-    getApartment: function getApartment() {
+    /* getApartment() {
+    axios
+        .get("/api/apartment/" + this.$route.params.id, {
+        params: {
+            lat: 44.78993000,
+            lon: 11.57065000,
+            radius: 20000
+        },
+        })
+        .then((response) => {
+        console.log(response);
+        if (response.data.status_code === 404) {
+            this.loading = false;
+            this.$router.push({ name: "not-found" });
+        } else {
+            this.apartment = response.data;
+            this.loading = false;
+        }
+        })
+        .catch((e) => {
+        console.error(e);
+        });
+    }, */
+    apartment: function apartment() {
       var _this = this;
 
-      axios.get("/api/apartment/" + this.$route.params.id, {
-        params: {
-          lat: 44.78993000,
-          lon: 11.57065000,
-          radius: 20000
-        }
-      }).then(function (response) {
-        console.log(response);
-
-        if (response.data.status_code === 404) {
-          _this.loading = false;
-
-          _this.$router.push({
-            name: "not-found"
-          });
-        } else {
-          _this.apartment = response.data;
-          _this.loading = false;
-        }
-      })["catch"](function (e) {
-        console.error(e);
+      //console.log('funziona');
+      axios.get("api/apartments/".concat(this.id)).then(function (res) {
+        //console.log(res.data);
+        _this.showApartment = res.data;
+        console.log(_this.showApartment);
       });
     }
   },
   mounted: function mounted() {
-    this.search(), this.getApartment();
-    console.log(this.$route.params.id);
+    if (this.id !== '') {
+      this.apartment();
+      console.log(this.showApartment);
+    }
   }
 });
 
@@ -20236,7 +20241,7 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("section", [_vm._m(0), _vm._v(" "), _c("div", {
+  return _c("section", [_vm._m(0), _vm._v(" "), _vm.showApartment === "" ? _c("div", {
     staticClass: "container my-5"
   }, [_c("div", {
     staticClass: "row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 my-5 gy-3"
@@ -20254,7 +20259,16 @@ var render = function render() {
         src: "storage/".concat(apartment.img),
         alt: ""
       }
-    })]), _vm._v(" "), _c("div", {
+    })]), _vm._v(" "), _c("button", {
+      attrs: {
+        type: "submit"
+      },
+      on: {
+        click: function click($event) {
+          _vm.id = apartment.id;
+        }
+      }
+    }, [_vm._v(" show ")]), _vm._v(" "), _c("div", {
       staticClass: "my-card-body d-flex flex-column"
     }, [_c("p", {
       staticClass: "title fw-bold pb-1"
@@ -20277,7 +20291,7 @@ var render = function render() {
         icon: "fa-solid fa-bed"
       }
     }), _vm._v(" \n                                " + _vm._s(apartment.beds_number))], 1)])])])]);
-  }), 0)])]);
+  }), 0)]) : _c("div", [_c("h1", [_vm._v("ciao")]), _vm._v(" "), _c("h1", [_vm._v(_vm._s(_vm.showApartment.title))])])]);
 };
 
 var staticRenderFns = [function () {
@@ -69613,17 +69627,10 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 __webpack_require__(/*! C:\MAMP\htdocs\Laravel\boolBnB\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! C:\MAMP\htdocs\Laravel\boolBnB\resources\sass\app.scss */"./resources/sass/app.scss");
 __webpack_require__(/*! C:\MAMP\htdocs\Laravel\boolBnB\resources\sass\dashboard.scss */"./resources/sass/dashboard.scss");
 module.exports = __webpack_require__(/*! C:\MAMP\htdocs\Laravel\boolBnB\resources\sass\login-register.scss */"./resources/sass/login-register.scss");
-=======
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel/BoolBnB/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel/BoolBnB/resources/sass/app.scss */"./resources/sass/app.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel/BoolBnB/resources/sass/dashboard.scss */"./resources/sass/dashboard.scss");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel/BoolBnB/resources/sass/login-register.scss */"./resources/sass/login-register.scss");
->>>>>>> 85a6767836fcbdf2695fcc6fb4938c9b137e5e8d
 
 
 /***/ })

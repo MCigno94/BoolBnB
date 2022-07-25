@@ -32,6 +32,10 @@ Route::middleware('auth')
     Route::resource('/apartments','UserApartmentController');
 });
 
+
+Route::get('apartments/{apartment}/messages','MessageController@index')->name('messages.index');
+
+
 Route::get("/", function(){
     return view('guest.home');
 })->name('home');
