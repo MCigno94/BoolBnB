@@ -11,31 +11,10 @@
 
 @section('content')
 
-<div id="map" style="width: 450px; height: 450px;"></div>
+
 <section class="container my-3">
-
-    <!-- NAV ARROWS -->
-    <!-- <div class="d-flex justify-content-end gap-3">
-        <a class="nav-link mb-2" href="#">
-            <i class="fa-solid fa-chevron-left fs-2 text-danger"></i>
-        </a>
-
-        <a class="nav-link mb-2" href="#">
-            <i class="fa-solid fa-chevron-right fs-2 text-danger"></i>
-        </a>
-    </div> -->
-
-    <div class="card">
-
-        <div class="img_container">
-            
-            <img class="apartment_img" src="{{ ($apartment->img === 'Case-moderne.jpg') ? asset('img/Case-moderne.jpg') : asset('storage/' . $apartment->img) }}" alt="{{$apartment->title}}">
-        </div>
-        <h1>{{$apartment->title}}</h1>
-    </div>
-
-    <!-- BUTTONS -->
-    <div class="d-flex align-items-center justify-content-between">
+     <!-- BUTTONS -->
+     <div class="d-flex align-items-center justify-content-between">
         <div class="visibility">
             @if ($apartment->visibility) 
                 {{-- <i class="fas fa-circle mr-2"></i> --}}
@@ -82,5 +61,54 @@
         </div>
 
     </div>
+
+    <!-- NAV ARROWS -->
+    <!-- <div class="d-flex justify-content-end gap-3">
+        <a class="nav-link mb-2" href="#">
+            <i class="fa-solid fa-chevron-left fs-2 text-danger"></i>
+        </a>
+
+        <a class="nav-link mb-2" href="#">
+            <i class="fa-solid fa-chevron-right fs-2 text-danger"></i>
+        </a>
+    </div> -->
+
+    <div class="card">
+        <h1>{{$apartment->title}}</h1>
+        <div class="img_container">
+            
+            <img class="apartment_img" src="{{ ($apartment->img === 'Case-moderne.jpg') ? asset('img/Case-moderne.jpg') : asset('storage/' . $apartment->img) }}" alt="{{$apartment->title}}">
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+    <p class="w-50 text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus excepturi eaque aliquid sit perspiciatis cum quasi omnis molestiae odit blanditiis nisi officia deleniti similique nobis, provident doloremque expedita ullam suscipit veritatis natus maiores? Nisi voluptas inventore temporibus quia eveniet distinctio consequuntur nemo odit, esse, voluptatum facere nostrum voluptate quam necessitatibus dolorum at tenetur. Eos repellendus beatae maiores, iusto laborum, qui autem tenetur ullam, aut velit natus dignissimos labore vitae delectus accusantium cupiditate tempore commodi ipsa voluptatem provident. Ipsa iure, quasi adipisci alias laudantium maiores et obcaecati totam deserunt sit dicta fuga in dignissimos quam quas consectetur. Enim id libero incidunt!</p>
+    <div id="map" style="width: 450px; height: 450px;"></div>
+    </div>
+    <div class="mes-host pt-5 d-flex">
+        <div class="w-50 ps-3">
+            <h2>Cosa troverai</h2>
+            <div class="p-1">
+            @foreach($services as $service)
+                        <div class="col">
+                            <span>
+                                <span>
+                                    <i class="{{ $service->icon }} ps-1 pe-3" style="width: 8px;"></i>
+                                </span>
+                                <span>{{ $service->name }}</span>
+                            </span>
+                        </div>
+             @endforeach
+            </div>
+
+        </div>
+        <div class="mb-3 w-50">
+          <h3>Invia un messaggio all'host</h3>
+          <input type="text" class="form-control p-5 mt-3" name="" id="" aria-describedby="helpId" placeholder="">
+          <button type="button" class="btn btn-primary mt-3">Button</button>
+        </div>
+
+    </div>
+
 </section>
 @endsection

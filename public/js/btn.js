@@ -166,7 +166,7 @@ btn.addEventListener('click', function (e) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/progetto finale/boolBnB/BoolBnB/resources/js/btn.js */"./resources/js/btn.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel/BoolBnB/resources/js/btn.js */"./resources/js/btn.js");
 
 
 /***/ })
