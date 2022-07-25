@@ -69613,10 +69613,17 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! C:\MAMP\htdocs\Laravel\boolBnB\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! C:\MAMP\htdocs\Laravel\boolBnB\resources\sass\app.scss */"./resources/sass/app.scss");
 __webpack_require__(/*! C:\MAMP\htdocs\Laravel\boolBnB\resources\sass\dashboard.scss */"./resources/sass/dashboard.scss");
 module.exports = __webpack_require__(/*! C:\MAMP\htdocs\Laravel\boolBnB\resources\sass\login-register.scss */"./resources/sass/login-register.scss");
+=======
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel/BoolBnB/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel/BoolBnB/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel/BoolBnB/resources/sass/dashboard.scss */"./resources/sass/dashboard.scss");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel/BoolBnB/resources/sass/login-register.scss */"./resources/sass/login-register.scss");
+>>>>>>> 85a6767836fcbdf2695fcc6fb4938c9b137e5e8d
 
 
 /***/ })
