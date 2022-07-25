@@ -117,8 +117,17 @@
         </div>
         <div>
           <h3>Send a message</h3>
-          <textarea type="text" cols="60" rows="10" class="form-control mt-3" name="" id="" aria-describedby="helpId" placeholder=""></textarea>
-          <button type="button" class="btn btn-danger mt-3">Send</button>
+
+
+          <form>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text"></div>
+  </div>
+            <textarea type="text" cols="60" rows="10" class="form-control mt-3" name="" id="" aria-describedby="helpId" placeholder=""></textarea>
+            <button type="submit" class="btn btn-danger mt-3">Send</button>
+</form>
         </div>
     </div>
     </div>
