@@ -9,6 +9,11 @@
 @import 'variables';
 @import 'dashboard';
 @import 'login-register';
+
+// TomTom Searchbox
+@import '~@tomtom-international/web-sdk-plugin-searchbox/dist/SearchBox.css';
+@import '@tomtom-international/web-sdk-maps';
+
 main {
     padding-bottom: 100px !important;
 }

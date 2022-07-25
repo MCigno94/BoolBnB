@@ -132,12 +132,12 @@
 
                     
                     <!-- SERVICES -->
-                    <label class="col-form-label px-0 pt-3" for="services">Services</label>
+                    <label class="col-form-label px-0 pt-3" for="services">Services (Select at least 1 service)</label>
                     <div class="row row-cols-2 row-cols-xl-3">
-                    
-                    @foreach($services as $service)
+                        
+                        @foreach($services as $service)
                         <div class="col">
-                            <input type="checkbox" name="services[]" value="{{$service->id}}">
+                            <input class="check_service" type="checkbox" name="services[]" value="{{$service->id}}" {{ (in_array($service->id, $ids)) ? 'checked' : 'class="alert"' }}>
                             <span>
                                 <span>
                                     <i class="{{ $service->icon }} ps-1 pe-3" style="width: 8px;"></i>
@@ -146,6 +146,7 @@
                             </span>
                         </div>
                         @endforeach
+                        <small id="check-err" class="form-text bg-warning text-danger fw-bold rounded-2" hidden>Select at least one service</small>
                     </div>
             
                     <div class="d-flex pt-5">

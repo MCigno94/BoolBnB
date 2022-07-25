@@ -31,11 +31,22 @@ class UserApartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(apartment $apartment, Request $request)
     {
         $services = Service::all();
         //dd($services);
-        return view('user.apartments.create', compact('services'));
+        $servicesId = DB::table('apartment_service')->select('service_id')->where('apartment_id', $apartment->id)->get();
+
+        $ids= [];
+
+        foreach ($servicesId as $id) {
+            $ids[]= $id->service_id;
+        }
+
+        $apartment->service()->detach($ids);
+        $apartment->service()->attach($request->services);
+        
+        return view('user.apartments.create', compact('services', 'ids', 'apartment', ));
         
     }
 
@@ -73,6 +84,18 @@ class UserApartmentController extends Controller
 
         $new_apartment = Apartment::create($data);
         $new_apartment->service()->attach($request->services);
+
+        $servicesId = DB::table('apartment_service')->select('service_id')->where('apartment_id', $new_apartment->id)->get();
+
+        $ids= [];
+
+        foreach ($servicesId as $id) {
+            $ids[]= $id->service_id;
+        }
+
+        $new_apartment->service()->detach($ids);
+        $new_apartment->service()->attach($request->services);
+
 
         return redirect()->route('user.apartments.index');
     }

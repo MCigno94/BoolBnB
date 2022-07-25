@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 // 1. Define route components.
 // These can be imported from other files
 import Home from './Pages/Home';
-//import AdvancedSearch from './Pages/AdvancedSearch';
+import AdvancedSearch from './Pages/AdvancedSearch';
 //import Apartments from './Pages/Apartments';
 //import Apartment from './Pages/Apartment';
 //import NotFound from './Pages/NotFound';
@@ -23,38 +23,24 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home
+    component: Home,
+    props: true
   },
   {
     path: '/advancedsearch',
     name: 'advancedsearch',
-    component: AdvancedSearch
-  },
-  {
-    path: '/apartments',
-    name: 'apartments',
-    component: Apartments,
+    component: AdvancedSearch,
     props: true
   },
-  {
-    path: '/apartment/:id',
-    name: 'apartment',
-    component: Apartment,
-    props: true
-  },
-  {
-    path: '/*',
-    name: 'not-found',
-    component: NotFound
-  },
+ 
 ]
 
 // 3. Create the router instance and pass the `routes` option
 // You can pass in additional options here, but let's
 // keep it simple for now.
 const router = new VueRouter({
-    mode: 'history',
-    routes // short for `routes: routes`
+  mode: 'history',
+  routes // short for `routes: routes`
 })
 
 // 4. Create and mount the root instance.

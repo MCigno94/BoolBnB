@@ -6,17 +6,16 @@
                 <div class="cta">
                     <h1 class="display-3 text-light text-center">Search your favourite location</h1>
                 </div>
-                <div class="search">
+                <!-- <div class="search">
                     <div class="searchbox w-100 d-flex justify-content-center gap-2 mb-2">
                         <input @keyup="search" type="text" name="search" id="search" v-model="value"/>
                         <button class="btn btn-danger text-white">Search</button>
                     </div>
-                    <router-link class="advancedSearch text-white text-decoration-underline">
-                        Advanced Search
-                    </router-link>
-                </div>
+                   
+                </div> -->
             </div>
         </div>
+         <advanced-search/>
         <div class="container my-5">
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 my-5 gy-3">
                 <div class="col d-flex justify-content-center" v-for="apartment in apartments" :key="apartment.id">
@@ -44,8 +43,13 @@
 </template>
 
 <script>
+import AdvancedSearch from './AdvancedSearch.vue';
+
+
 export default {
-    components: {Home},
+  components: { AdvancedSearch },
+
+    
     name: "Home",
     props: ['apartments'],
     data(){
@@ -59,10 +63,35 @@ export default {
                 return this.value
             })
                 console.log(this.apartments);
-        }
+        },
+        getApartment() {
+      axios
+        .get("/api/apartment/" + this.$route.params.id, {
+          params: {
+            lat: 44.78993000,
+            lon: 11.57065000,
+            radius: 20000
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.data.status_code === 404) {
+            this.loading = false;
+            this.$router.push({ name: "not-found" });
+          } else {
+            this.apartment = response.data;
+            this.loading = false;
+          }
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    },
     },
     mounted(){
-        this.search()
+        this.search(),
+        this.getApartment()
+        console.log(this.$route.params.id);
 
     },
 };

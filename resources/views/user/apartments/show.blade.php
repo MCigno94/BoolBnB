@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
-@section('content')  
+
+
+@section('js-search')
+
+    <script src="{{asset('js/search.js')}}" async> </script>
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+
+@endsection
+
+@section('content')
+
+<div id="map" style="width: 450px; height: 450px;"></div>
 <section class="container my-3">
 
     <!-- NAV ARROWS -->

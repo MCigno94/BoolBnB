@@ -21,7 +21,7 @@
 
     
     @yield('js')
-
+    @yield('js-search')
 </head>
 
 <body>
