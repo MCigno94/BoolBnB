@@ -20,7 +20,6 @@ Auth::routes();
     return view('welcome');
 }); */
 
-//Route::get('/', 'HomeController@index')->name('home');
 
 
 Route::middleware('auth')
@@ -29,11 +28,10 @@ Route::middleware('auth')
 ->name('user.')
 ->group(function ()
 {
-    Route::resource('/apartments','UserApartmentController');
+    //Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('apartments','UserApartmentController');
+    Route::get('apartments/messages','MessageController@index')->name('messages.index');
 });
-
-
-Route::get('apartments/{apartment}/messages','MessageController@index')->name('messages.index');
 
 
 Route::get("/", function(){

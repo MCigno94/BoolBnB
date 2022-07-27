@@ -26,6 +26,10 @@
 
         <div class="buttons d-flex gap-2">
             <div class="button">
+                
+                <a class="btn btn-light" href="{{route('user.messages.index', $apartment->id)}}">
+                    <i class="fa-solid fa-pen-to-square pe-2 text-primary"></i>Message
+                </a>
                 <a class="btn btn-light" href="{{route('user.apartments.edit', $apartment->id)}}">
                     <i class="fa-solid fa-pen-to-square pe-2 text-primary"></i>Edit
                 </a>
@@ -95,7 +99,7 @@
         </div>
        <div class="col">
         <h2>Map</h2>
-            <div id="map" style="width: 500px; height: 300px;"></div>
+        <div id="map" style="width: 500px; height: 300px;" latitude='{{$apartment->latitude}}' longitude='{{$apartment->longitude}}'></div>
        </div>
     </div>
     <div class="mes-host pt-5 d-flex">
