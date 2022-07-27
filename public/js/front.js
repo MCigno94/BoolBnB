@@ -5149,9 +5149,11 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
-  props: ['apartments'],
+
+  /* props: ['apartments'], */
   data: function data() {
     return {
+      apartments: '',
       value: '',
       showApartment: '',
       id: '',
@@ -5164,7 +5166,7 @@ __webpack_require__.r(__webpack_exports__);
     getMap: function getMap() {
       var _this = this;
 
-      axios.get("api/apartments/".concat(this.id)).then(function (res) {
+      axios.get("api/apartment/".concat(this.id)).then(function (res) {
         _this.showApartment = res.data[0]; //console.log(this.showApartment);
 
         var latitude = _this.showApartment.latitude;
@@ -5177,8 +5179,7 @@ __webpack_require__.r(__webpack_exports__);
           center: apartmentSelectd,
           zoom: 15
         });
-        var marker = new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.Marker().setLngLat(apartmentSelectd).addTo(map);
-        console.log(latitude, longitude);
+        var marker = new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.Marker().setLngLat(apartmentSelectd).addTo(map); //console.log(latitude, longitude);
       });
     },
     search: function search() {
@@ -5215,11 +5216,63 @@ __webpack_require__.r(__webpack_exports__);
         var data = response.data.results[0].position; //console.log(data);
 
         _this2.lat = data.lat;
-        _this2.lon = data.lon; //console.log(this.lat, this.lon);
+        _this2.lon = data.lon;
+        console.log(_this2.lat, _this2.lon);
+      });
+    },
+    getAllApi: function getAllApi() {
+      var _this3 = this;
+
+      axios.get("api/apartments/all").then(function (res) {
+        var apartments = res.data;
+        var newArrayPosition = apartments.filter(function (apartment, index) {
+          var latitude = apartment.latitude;
+          var longitude = apartment.longitude;
+
+          var distance = _this3.km_20_Apartments(latitude, longitude);
+
+          apartment.b = distance; //console.log(apartment);
+
+          return distance < 5000;
+        }); //console.log(newArrayPosition);
+
+        _this3.apartments = newArrayPosition;
+      });
+    },
+    km_20_Apartments: function km_20_Apartments(latitude, longitude) {
+      var lat1 = this.lat;
+      var lon1 = this.lon;
+      var lat2 = latitude;
+      var lon2 = longitude;
+      var R = 6371e3; // metres
+
+      var φ1 = lat1 * Math.PI / 180; // φ, λ in radians
+
+      var φ2 = lat2 * Math.PI / 180;
+      var Δφ = (lat2 - lat1) * Math.PI / 180;
+      var Δλ = (lon2 - lon1) * Math.PI / 180;
+      var a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      var d = R * c; // in metres
+
+      console.log(d);
+      return d;
+    },
+    callAPI: function callAPI() {
+      var _this4 = this;
+
+      axios.get("api/apartments/partial").then(function (res) {
+        var apart = res.data.data;
+        _this4.apartments = apart; //console.log(this.apartments);
       });
     }
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    //this.getAllApi()
+    //this.km_20_Apartments(88,-8)
+    //this.filterApartment()
+    this.callAPI();
+  }
 });
 
 /***/ }),
@@ -5245,18 +5298,9 @@ __webpack_require__.r(__webpack_exports__);
       apartments: []
     };
   },
-  methods: {
-    callAPI: function callAPI() {
-      var _this = this;
-
-      axios.get("api/apartments").then(function (res) {
-        var apart = res.data.data;
-        _this.apartments = apart; //console.log(this.apartments);
-      });
-    }
-  },
+  methods: {},
   mounted: function mounted() {
-    this.callAPI();
+    /* this.callAPI(); */
   }
 });
 
@@ -5323,7 +5367,9 @@ var render = function render() {
     },
     on: {
       click: function click($event) {
-        return _vm.position();
+        _vm.position();
+
+        _vm.getAllApi();
       }
     }
   }, [_vm._v("search")]), _vm._v(" "), _c("div", {
@@ -5337,12 +5383,12 @@ var render = function render() {
       staticClass: "col d-flex justify-content-center"
     }, [_c("div", {
       staticClass: "my-card pt-3"
-    }, [_c("div", {
+    }, [apartment.distance ? _c("h5", [_vm._v(" " + _vm._s(apartment.distance) + " ")]) : _vm._e(), _vm._v(" "), _c("div", {
       staticClass: "img"
     }, [_c("img", {
       staticClass: "my-card-img",
       attrs: {
-        src: "storage/".concat(apartment.img),
+        src: apartment.img === "Case-moderne.jpg" ? "../../img/Case-moderne.jpg" : "storage/".concat(apartment.img),
         alt: ""
       }
     })]), _vm._v(" "), _c("button", {
@@ -5382,13 +5428,13 @@ var render = function render() {
   }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "container",
     "class": _vm.showApartment !== "" ? "d-block" : "d-none"
-  }, [_c("h1", [_vm._v(" " + _vm._s(_vm.showApartment.title) + " ")]), _vm._v(" "), _c("img", {
+  }, [_c("h1", [_vm._v(" " + _vm._s(_vm.showApartment.title) + " ")]), _vm._v(" "), _vm.showApartment !== "" ? _c("img", {
     staticClass: "my-card-img",
     attrs: {
-      src: _vm.showApartment.img === "Case-moderne.jpg" ? "img/Case-moderne.jpg" : "storage/".concat(_vm.showApartment.img),
+      src: _vm.showApartment.img === "Case-moderne.jpg" ? "../../img/Case-moderne.jpg" : "storage/".concat(_vm.showApartment.img),
       alt: ""
     }
-  }), _vm._v(" "), _vm._l(_vm.showApartment.service, function (service) {
+  }) : _vm._e(), _vm._v(" "), _vm._l(_vm.showApartment.service, function (service) {
     return _c("div", {
       key: service.id
     }, [_c("span", [_c("i", {
@@ -5485,11 +5531,7 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("section", [_c("Home", {
-    attrs: {
-      apartments: _vm.apartments
-    }
-  })], 1);
+  return _c("section", [_c("Home")], 1);
 };
 
 var staticRenderFns = [];

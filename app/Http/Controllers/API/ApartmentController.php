@@ -13,10 +13,16 @@ class ApartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($all)
     {   
-        $apartments = Apartment::orderByDesc('id')->with('service')->simplePaginate(24);
-        return $apartments;
+        if($all === "all"){
+            $apartments = Apartment::all();
+            return $apartments;
+        }
+        else if($all === "partial") {
+            $apartments = Apartment::orderByDesc('id')->with('service')->simplePaginate(10);
+            return $apartments;
+        }
     }
 
     /**

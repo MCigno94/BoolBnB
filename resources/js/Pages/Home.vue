@@ -21,17 +21,20 @@
         </div>
 
         <div id="searchBox"></div>
-        <button id="btnSearch" @click="position()">search</button>
+        <button id="btnSearch" @click="position(); getAllApi()">search</button>
          
          
         <div class="container my-5" :class="(showApartment === '') ? 'd-block' : 'd-none'">
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 my-5 gy-3">
                 <div class="col d-flex justify-content-center" v-for="apartment in apartments" :key="apartment.id">
                     <div class="my-card pt-3">
-                        <div class="img">
-                            <img :src="`storage/${apartment.img}`" class="my-card-img" alt=""/>
-                        </div>
 
+                        <h5 v-if="apartment.distance"> {{apartment.distance}} </h5>
+
+
+                        <div class="img">
+                            <img :src="((apartment.img === 'Case-moderne.jpg') ? '../../img/Case-moderne.jpg' : `storage/${apartment.img}`)" class="my-card-img" alt=""/>
+                        </div>
 
 
                         <button type="submit" @click="id = apartment.id; getMap()"> show </button>
@@ -53,10 +56,13 @@
             </div>
         </div>
         
+
+
         <!-- SHOW APARTMENT -->
         <div class="container " :class="(showApartment !== '') ? 'd-block' : 'd-none'">
             <h1> {{showApartment.title}} </h1>
-            <img :src="((showApartment.img === 'Case-moderne.jpg') ? 'img/Case-moderne.jpg' : `storage/${showApartment.img}`)" class="my-card-img" alt=""/>
+
+            <img v-if="showApartment !== '' " :src="((showApartment.img === 'Case-moderne.jpg') ? '../../img/Case-moderne.jpg' : `storage/${showApartment.img}`)" class="my-card-img" alt=""/>
             <div v-for="service in showApartment.service" :key="service.id"> 
                 <span>
                     <i :class="service.icon" class="ps-1 pe-3" style="width: 8px;"></i>
@@ -75,7 +81,7 @@
             </div>
             <div class="messages">
                 <h3>Send a message</h3>
-
+            
                 <form>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -102,9 +108,10 @@ import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
 
 export default {
     name: "Home",
-    props: ['apartments'],
+    /* props: ['apartments'], */
     data(){
         return{
+            apartments: '',
             value: '',
             showApartment: '',
             id: '',
@@ -116,7 +123,7 @@ export default {
     methods: {
         getMap() {
             axios
-            .get(`api/apartments/${this.id}`)
+            .get(`api/apartment/${this.id}`)
             .then((res) => {
                 this.showApartment = res.data[0];
                 //console.log(this.showApartment);
@@ -133,7 +140,7 @@ export default {
                 });
 
                 let marker = new tt.Marker().setLngLat(apartmentSelectd).addTo(map);
-                console.log(latitude, longitude);
+                //console.log(latitude, longitude);
             });
         },
         search() {
@@ -171,16 +178,66 @@ export default {
                 //console.log(data);
                 this.lat = data.lat;
                 this.lon = data.lon;
-                //console.log(this.lat, this.lon);
+                console.log(this.lat, this.lon);
             })
         },
+        getAllApi(){
+            axios
+            .get(`api/apartments/all`)
+            .then((res) => {
+                let apartments = res.data;
 
+                let newArrayPosition = apartments.filter((apartment, index)=>{
+                    let latitude = apartment.latitude;
+                    let longitude = apartment.longitude;
+                    let distance = this.km_20_Apartments(latitude, longitude);
+                    apartment.b = distance
+                    //console.log(apartment);
+                    return distance < 5000;
+                })
+                //console.log(newArrayPosition);
+                this.apartments = newArrayPosition;
+            })
+        },
+        km_20_Apartments(latitude, longitude){
+
+            const lat1 = this.lat;
+            const lon1 = this.lon;
+
+            const lat2 = latitude;
+            const lon2 = longitude;
+
+            const R = 6371e3; // metres
+            const φ1 = lat1 * Math.PI / 180; // φ, λ in radians
+            const φ2 = lat2 * Math.PI / 180;
+            const Δφ = (lat2 - lat1) * Math.PI / 180;
+            const Δλ = (lon2 - lon1) * Math.PI / 180;
+
+            const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+                Math.cos(φ1) * Math.cos(φ2) *
+                Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+            const d = R * c; // in metres
+            console.log(d);
+            return d;
+        },
+        callAPI() {
+            axios.get("api/apartments/partial").then((res) => {
+            let apart = res.data.data;
+            this.apartments = apart;
+            //console.log(this.apartments);
+            });
+        }
+        
     },
         
     mounted(){
-       
+       //this.getAllApi()
+       //this.km_20_Apartments(88,-8)
+       //this.filterApartment()
+       this.callAPI()
     }
- 
     
 };
 </script>

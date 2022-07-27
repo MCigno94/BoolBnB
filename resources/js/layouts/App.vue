@@ -1,6 +1,6 @@
 <template>
   <section>
-    <Home :apartments="apartments"/>
+    <Home/>
   </section>
 </template>
 
@@ -17,17 +17,10 @@ export default {
     };
   },
   methods: {
-    callAPI() {
-      axios.get("api/apartments").then((res) => {
-        let apart = res.data.data;
-        this.apartments = apart;
-        //console.log(this.apartments);
-      });
-    }
 
   },
   mounted() {
-    this.callAPI();
+    /* this.callAPI(); */
   },
 };
 </script>
