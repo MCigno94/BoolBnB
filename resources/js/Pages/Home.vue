@@ -7,40 +7,32 @@
                 <div class="cta">
                     <h1 class="display-3 text-light text-center">Search your favourite location</h1>
                 </div>
+                <div class="mx-4 text-white">
+                        <!-- FILTER SEARCH -->
+                        <div id="searchBox"></div>
+                        <button class="btn btn-primary text-white" id="btnSearch" @click="positionSearch(); filterAllApi()">search</button>
 
+                        <div>
+                            <label for="searchRooms">Stanze</label>
+                            <input @keyup="inputFilterRooms()" @click="inputFilterRooms()" type="number" name="searchRooms" id="searchRooms">
+                        </div>
 
-                <div class="search">
-                    <div class="searchbox w-100 d-flex justify-content-center gap-2 mb-2">
-                        <input  @click="search()"  type="text" name="search" id="search" v-model="value"/>
-                        <button class="btn btn-danger text-white">Search</button>
-                    </div>
-                </div> 
-
+                        <div>
+                            <label for="searchBeds">Letti</label>
+                            <input @keyup="inputFilterBeds()" type="number" name="searchBeds" id="searchBeds">
+                        </div>
+                        <div class="d-flex">
+                            <div v-for="service in allServices" :key="service.id">
+                                <input @click="checkboxName = service.name; selectCheckbox() " type="checkbox" :name="service.name" :id="service.name">            
+                                <label :for="service.name"> {{service.name}} </label>
+                            </div>
+                        </div>
+                </div>
 
             </div>
         </div>
 
-        <!-- FILTER SEARCH -->
-        <div id="searchBox"></div>
-        <button id="btnSearch" @click="positionSearch(); getAllApi()">search</button>
 
-<div class="mx-4">
-
-        <div>
-            <label for="searchRooms">Stanze</label>
-            <input @keyup="inputFilterRooms()" @click="inputFilterRooms()" type="number" name="searchRooms" id="searchRooms">
-        </div>
-
-        <div>
-            <label for="searchBeds">Letti</label>
-            <input @keyup="inputFilterBeds()" type="number" name="searchBeds" id="searchBeds">
-        </div>
-        
-        <div v-for="service in allServices" :key="service.id">
-            <input type="checkbox" :name="service.name" :id="service.name">            
-            <label :for="service.name"> {{service.name}} </label>
-        </div>
-</div>
          
          
         <div class="container my-5" :class="(showApartment === '') ? 'd-block' : 'd-none'">
@@ -119,9 +111,6 @@
 <script>
 
 import tt from '@tomtom-international/web-sdk-maps';
-import { services } from '@tomtom-international/web-sdk-services';
-import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
-
 
 export default {
     name: "Home",
@@ -134,9 +123,10 @@ export default {
             addressPosition: [],
             lon: '1',
             lat: '1',
-            filter: '',
-            property: '',
             allServices: [],
+            queryServices: [],
+            checkboxName: '',
+            property: '',
             roomsNumber: '',
             bedsNumber: ''
         }
@@ -149,7 +139,7 @@ export default {
                 this.showApartment = res.data[0];
                 //console.log(this.showApartment);
                 let latitude = this.showApartment.latitude;
-                let longitude = this.showApartment.longitude;;
+                let longitude = this.showApartment.longitude;
 
                 let apartmentSelectd = [longitude, latitude];
 
@@ -163,26 +153,6 @@ export default {
                 let marker = new tt.Marker().setLngLat(apartmentSelectd).addTo(map);
                 //console.log(latitude, longitude);
             });
-        },
-        search() {
-            let options =
-            {
-                idleTimePress: 500,
-                minNumberOfCharacters: 0,
-                searchOptions: {
-                    key: 'kZ6HRy3q9inkB8ydTon7vCtbYvd6yMSV',
-                    language: 'it-IT'
-                },
-                /* autocompleteOptions: {
-                    key: 'kZ6HRy3q9inkB8ydTon7vCtbYvd6yMSV',
-                    language: 'it-IT'
-                }, */
-                noResultsMessage: 'No results found.'
-            }
-            const ttSearchBox = new SearchBox(services, options);
-            const searchBoxHTML = ttSearchBox.getSearchBoxHTML();
-            document.getElementById('searchBox').append(searchBoxHTML);
-            console.log(searchBoxHTML);
         },
         positionSearch(){
             window.axios.defaults.headers.common = {
@@ -200,17 +170,17 @@ export default {
                     this.lat = data.lat;
                     this.lon = data.lon;
                     //console.log(this.lat, this.lon);
-                console.log(street + 'si');
-                console.log(data);
+                //console.log(street + 'si');
+                //console.log(data);
 
                 })
             } else {
                 this.lat = '';
                 this.lon = '';
-                console.log(street + 'no');
+                //console.log(street + 'no');
             }
         },
-        getAllApi(){
+        filterAllApi(){
             if(this.lat !== '' && this.lon !== ''){
                 axios
                 .get(`api/apartments/all`)
@@ -223,9 +193,27 @@ export default {
 
                         let distance = this.km_20_Apartments(latitude, longitude);
                         apartment.distance = distance
-                        //console.log(apartment);
+                        //console.log(apartment.service);
                         
-                        return (distance < 20000) && this.stanze(apartment) && this.letti(apartment);
+                         let lunghezza = this.queryServices.length
+                         let counter = 0;
+                         for (const service of apartment.service) {
+                            if(this.queryServices.includes(service.name)){
+                                counter++
+                            }
+                         }               
+                         
+                         let veritaServizio = lunghezza === counter
+                        
+
+                        console.log(distance);
+                        console.log(distance < 20000 );
+                        console.log(this.stanze(apartment));
+                        console.log(this.letti(apartment));
+                        console.log(veritaServizio);
+
+
+                        return (distance < 20000) && this.stanze(apartment) && this.letti(apartment) && veritaServizio;
                     })
                     //console.log(newArrayPosition);
                     this.apartments = newArrayPosition;
@@ -285,7 +273,7 @@ export default {
             axios.get("api/apartments/partial").then((res) => {
             let apart = res.data.data;
             this.apartments = apart;
-            console.log(this.apartments);
+            //console.log(this.apartments);
             });
         },
         inputFilterRooms() {
@@ -304,17 +292,27 @@ export default {
                 //console.log(res.data);
             });
         },
-        
+        selectCheckbox() {
+            let checkbox = document.getElementById(this.checkboxName)
+            checkbox.classList.toggle('active')
+            if(checkbox.classList.contains('active')){
+                console.log('funziona');
+                this.queryServices.push(this.checkboxName)                
+            }else {
+                let index = this.queryServices.indexOf(this.checkboxName)
+                this.queryServices.splice(index, 1)
+                console.log('non funziona');
+            }
+            console.log(this.queryServices);
+        }
     },
-        
     mounted(){
-       //this.getAllApi()
+       //this.filterAllApi()
        //this.km_20_Apartments(88,-8)
        //this.filterApartment()
        this.callAPI()
        this.servicesCallAPI()
     }
-    
 };
 </script>
 
@@ -332,7 +330,7 @@ export default {
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            filter: brightness(70%);
+            filter: brightness(20%);
         }
         .search{
             width: 60%;

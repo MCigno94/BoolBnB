@@ -1,11 +1,13 @@
 /*  */
 
+import axios from 'axios'
+
 function callStreet() {
 
-    window.axios.defaults.headers.common = {
+    /* window.axios.defaults.headers.common = {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-    }
+    } */
 
     const keyAPI = 'kZ6HRy3q9inkB8ydTon7vCtbYvd6yMSV';
     const street = document.getElementById('address').value

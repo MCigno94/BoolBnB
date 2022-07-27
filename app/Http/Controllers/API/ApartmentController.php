@@ -16,7 +16,7 @@ class ApartmentController extends Controller
     public function index($all)
     {   
         if($all === "all"){
-            $apartments = Apartment::all();
+            $apartments = Apartment::orderByDesc('id')->with('service')->get();
             return $apartments;
         }
         else if($all === "partial") {
