@@ -5202,7 +5202,7 @@ __webpack_require__.r(__webpack_exports__);
       document.getElementById('searchBox').append(searchBoxHTML);
       console.log(searchBoxHTML);
     },
-    position: function position() {
+    positionSearch: function positionSearch() {
       var _this2 = this;
 
       window.axios.defaults.headers.common = {
@@ -5216,8 +5216,7 @@ __webpack_require__.r(__webpack_exports__);
         var data = response.data.results[0].position; //console.log(data);
 
         _this2.lat = data.lat;
-        _this2.lon = data.lon;
-        console.log(_this2.lat, _this2.lon);
+        _this2.lon = data.lon; //console.log(this.lat, this.lon);
       });
     },
     getAllApi: function getAllApi() {
@@ -5231,7 +5230,7 @@ __webpack_require__.r(__webpack_exports__);
 
           var distance = _this3.km_20_Apartments(latitude, longitude);
 
-          apartment.b = distance; //console.log(apartment);
+          apartment.distance = distance; //console.log(apartment);
 
           return distance < 5000;
         }); //console.log(newArrayPosition);
@@ -5367,7 +5366,7 @@ var render = function render() {
     },
     on: {
       click: function click($event) {
-        _vm.position();
+        _vm.positionSearch();
 
         _vm.getAllApi();
       }

@@ -11,6 +11,7 @@
 
                 <div class="search">
                     <div class="searchbox w-100 d-flex justify-content-center gap-2 mb-2">
+                        
                         <input @click="search()"  type="text" name="search" id="search" v-model="value"/>
                         <button class="btn btn-danger text-white">Search</button>
                     </div>
@@ -21,7 +22,7 @@
         </div>
 
         <div id="searchBox"></div>
-        <button id="btnSearch" @click="position(); getAllApi()">search</button>
+        <button id="btnSearch" @click="positionSearch(); getAllApi()">search</button>
          
          
         <div class="container my-5" :class="(showApartment === '') ? 'd-block' : 'd-none'">
@@ -163,7 +164,7 @@ export default {
             document.getElementById('searchBox').append(searchBoxHTML);
             console.log(searchBoxHTML);
         },
-        position(){
+        positionSearch(){
             window.axios.defaults.headers.common = {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -178,7 +179,7 @@ export default {
                 //console.log(data);
                 this.lat = data.lat;
                 this.lon = data.lon;
-                console.log(this.lat, this.lon);
+                //console.log(this.lat, this.lon);
             })
         },
         getAllApi(){
@@ -191,7 +192,7 @@ export default {
                     let latitude = apartment.latitude;
                     let longitude = apartment.longitude;
                     let distance = this.km_20_Apartments(latitude, longitude);
-                    apartment.b = distance
+                    apartment.distance = distance
                     //console.log(apartment);
                     return distance < 5000;
                 })
