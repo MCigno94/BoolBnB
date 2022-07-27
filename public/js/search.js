@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -112,6 +112,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var latitude = document.querySelector('#map').getAttribute('latitude');
 var longitude = document.querySelector('#map').getAttribute('longitude');
+console.log(latitude, longitude);
 var speedyPizzaCoordinates = [longitude, latitude];
 var map = _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.map({
   container: 'map',
@@ -123,7 +124,7 @@ var marker = new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0__
 
 /***/ }),
 
-/***/ 3:
+/***/ 2:
 /*!**************************************!*\
   !*** multi ./resources/js/search.js ***!
   \**************************************/

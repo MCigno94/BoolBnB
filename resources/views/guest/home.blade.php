@@ -7,13 +7,16 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 
     <title>Document</title>
+
+    
     
 </head>
 <body>
     @include('components.navbar')
-    <div id="root"></div>
+    <div id="root">
+
+    </div>
     
-    <script src="{{asset('js/app.js')}}"></script>
-    <script src="{{asset('js/front.js')}}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

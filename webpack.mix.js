@@ -13,8 +13,8 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/btn.js', 'public/js')
-    .js('resources/js/front.js', 'public/js')
     .js('resources/js/search.js', 'public/js')
+    .js('resources/js/searchStreet.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/dashboard.scss', 'public/css')
     .sass('resources/sass/login-register.scss', 'public/css')

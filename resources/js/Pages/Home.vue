@@ -11,8 +11,7 @@
 
                 <div class="search">
                     <div class="searchbox w-100 d-flex justify-content-center gap-2 mb-2">
-                        
-                        <input @click="search()"  type="text" name="search" id="search" v-model="value"/>
+                        <input  @click="search()"  type="text" name="search" id="search" v-model="value"/>
                         <button class="btn btn-danger text-white">Search</button>
                     </div>
                 </div> 
@@ -21,22 +20,39 @@
             </div>
         </div>
 
+        <!-- FILTER SEARCH -->
         <div id="searchBox"></div>
         <button id="btnSearch" @click="positionSearch(); getAllApi()">search</button>
+
+<div class="mx-4">
+
+        <div>
+            <label for="searchRooms">Stanze</label>
+            <input @keyup="inputFilterRooms()" @click="inputFilterRooms()" type="number" name="searchRooms" id="searchRooms">
+        </div>
+
+        <div>
+            <label for="searchBeds">Letti</label>
+            <input @keyup="inputFilterBeds()" type="number" name="searchBeds" id="searchBeds">
+        </div>
+        
+        <div v-for="service in allServices" :key="service.id">
+            <input type="checkbox" :name="service.name" :id="service.name">            
+            <label :for="service.name"> {{service.name}} </label>
+        </div>
+</div>
          
          
         <div class="container my-5" :class="(showApartment === '') ? 'd-block' : 'd-none'">
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 my-5 gy-3">
                 <div class="col d-flex justify-content-center" v-for="apartment in apartments" :key="apartment.id">
-                    <div class="my-card pt-3">
+                        <div class="my-card pt-3">
 
                         <h5 v-if="apartment.distance"> {{apartment.distance}} </h5>
-
 
                         <div class="img">
                             <img :src="((apartment.img === 'Case-moderne.jpg') ? '../../img/Case-moderne.jpg' : `storage/${apartment.img}`)" class="my-card-img" alt=""/>
                         </div>
-
 
                         <button type="submit" @click="id = apartment.id; getMap()"> show </button>
                         
@@ -109,7 +125,6 @@ import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
 
 export default {
     name: "Home",
-    /* props: ['apartments'], */
     data(){
         return{
             apartments: '',
@@ -117,8 +132,13 @@ export default {
             showApartment: '',
             id: '',
             addressPosition: [],
-            lon: '',
-            lat: ''
+            lon: '1',
+            lat: '1',
+            filter: '',
+            property: '',
+            allServices: [],
+            roomsNumber: '',
+            bedsNumber: ''
         }
     },
     methods: {
@@ -171,34 +191,72 @@ export default {
             };
             const keyAPI = 'kZ6HRy3q9inkB8ydTon7vCtbYvd6yMSV'
             const street = document.querySelector('#searchBox input').value
-            //console.log(street);
-            axios
-            .get(`https://api.tomtom.com/search/2/geocode/${street}.json?key=${keyAPI}&countrySet=IT&limit=1`)
-            .then(response => {
-                const data = response.data.results[0].position;
-                //console.log(data);
-                this.lat = data.lat;
-                this.lon = data.lon;
-                //console.log(this.lat, this.lon);
-            })
+            if(street !== ''){
+                axios
+                .get(`https://api.tomtom.com/search/2/geocode/${street}.json?key=${keyAPI}&countrySet=IT&limit=1`)
+                .then(response => {
+                    const data = response.data.results[0].position;
+                    //console.log(data);
+                    this.lat = data.lat;
+                    this.lon = data.lon;
+                    //console.log(this.lat, this.lon);
+                console.log(street + 'si');
+                console.log(data);
+
+                })
+            } else {
+                this.lat = '';
+                this.lon = '';
+                console.log(street + 'no');
+            }
         },
         getAllApi(){
-            axios
-            .get(`api/apartments/all`)
-            .then((res) => {
-                let apartments = res.data;
+            if(this.lat !== '' && this.lon !== ''){
+                axios
+                .get(`api/apartments/all`)
+                .then((res) => {
+                    let apartments = res.data;
 
-                let newArrayPosition = apartments.filter((apartment, index)=>{
-                    let latitude = apartment.latitude;
-                    let longitude = apartment.longitude;
-                    let distance = this.km_20_Apartments(latitude, longitude);
-                    apartment.distance = distance
-                    //console.log(apartment);
-                    return distance < 5000;
+                    let newArrayPosition = apartments.filter((apartment, index)=>{
+                        let latitude = apartment.latitude;
+                        let longitude = apartment.longitude;
+
+                        let distance = this.km_20_Apartments(latitude, longitude);
+                        apartment.distance = distance
+                        //console.log(apartment);
+                        
+                        return (distance < 20000) && this.stanze(apartment) && this.letti(apartment);
+                    })
+                    //console.log(newArrayPosition);
+                    this.apartments = newArrayPosition;
                 })
-                //console.log(newArrayPosition);
-                this.apartments = newArrayPosition;
-            })
+            } else {
+                this.callAPI();
+            }
+        },
+        stanze(apartment) {
+            let stanze;
+            if(this.roomsNumber !== '') {
+                stanze = this.roomsNumber <= apartment.rooms_number
+                console.log(typeof stanze);
+                //console.log(this.roomsNumber + ' - ' + apartment.rooms_number );
+            } else {
+                stanze = true;
+                //console.log(stanze + ' else');
+            }
+            return stanze;
+        },
+        letti(apartment) {
+            let letti;
+            if(this.bedsNumber !== '') {
+                letti = this.bedsNumber <= apartment.beds_number
+                //console.log(letti + ' if');
+                //console.log(this.bedsNumber + ' - ' + apartment.rooms_number );
+            } else {
+                letti = true;
+                //console.log(stanze + ' else');
+            }
+            return letti;
         },
         km_20_Apartments(latitude, longitude){
 
@@ -227,9 +285,25 @@ export default {
             axios.get("api/apartments/partial").then((res) => {
             let apart = res.data.data;
             this.apartments = apart;
-            //console.log(this.apartments);
+            console.log(this.apartments);
             });
-        }
+        },
+        inputFilterRooms() {
+            const inputRooms = document.querySelector('#searchRooms').value
+            this.roomsNumber = inputRooms;
+            console.log(this.roomsNumber + ' ' + 'stanze');
+        },
+        inputFilterBeds() {
+            const inputbeds = document.querySelector('#searchBeds').value
+            this.bedsNumber = inputbeds;
+            console.log(this.bedsNumber + ' ' + 'letti');
+        },
+        servicesCallAPI() {
+            axios.get("api/services").then((res) => {
+                this.allServices = res.data
+                //console.log(res.data);
+            });
+        },
         
     },
         
@@ -238,6 +312,7 @@ export default {
        //this.km_20_Apartments(88,-8)
        //this.filterApartment()
        this.callAPI()
+       this.servicesCallAPI()
     }
     
 };

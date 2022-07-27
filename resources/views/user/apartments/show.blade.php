@@ -5,7 +5,6 @@
 @section('js-search')
 
     <script src="{{asset('js/search.js')}}" async> </script>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
 
 @endsection
 
@@ -97,28 +96,30 @@
             quam quas consectetur. Enim id libero incidunt!
             </p>
         </div>
+
        <div class="col">
-        <h2>Map</h2>
-        <div id="map" style="width: 500px; height: 300px;" latitude='{{$apartment->latitude}}' longitude='{{$apartment->longitude}}'></div>
+            <h2>Map</h2>
+            <div id="map" style="width: 500px; height: 300px;" latitude='{{$apartment->latitude}}' longitude='{{$apartment->longitude}}'></div>
        </div>
+
     </div>
     <div class="mes-host pt-5 d-flex">
         <div class="w-50 ps-3">
             <h2>Services</h2>
             <div class="p-1">
             @foreach($services as $service)
-                        <div class="col">
-                            <span>
-                                <span>
-                                    <i class="{{ $service->icon }} ps-1 pe-3" style="width: 8px;"></i>
-                                </span>
-                                <span>{{ $service->name }}</span>
-                            </span>
-                        </div>
+                <div class="col {{ (in_array($service->id, $ids)) ? '' : 'd-none' }}">
+                    <span>
+                        <i class="{{ $service->icon }} ps-1 pe-3" style="width: 8px;"></i>
+                    </span>
+                    <span>{{ $service->name }}</span>
+                </div>
              @endforeach
             </div>
         </div>
         <div>
+
+        
           <h3>Send a message</h3>
 
 

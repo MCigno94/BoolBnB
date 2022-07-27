@@ -21,7 +21,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faBed, faDoorClosed } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add( faBed, faDoorClosed)
+library.add(faBed, faDoorClosed)
 
 /* add font awesome icon component */
 Vue.component('font-awesome-icon', FontAwesomeIcon)
@@ -46,8 +46,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
- const app = new Vue({
+const app = new Vue({
     el: '#root',
     render: h => h(App) // mostriamo App all'avvio di Vue
 });
-

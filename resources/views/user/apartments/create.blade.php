@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+
+@section('js')
+    <script src="{{ asset('js/searchStreet.js')}}" async> </script>
+    <script src="{{ asset('js/btn.js')}}" async> </script>
+@endsection
+
 @section('content')
 
 
@@ -50,8 +56,7 @@
                         <div class="form-group row image m-0 py-1">
                             <label class="col-form-label px-0" for="address">Address*</label>
                             <input  class="form-control @error('address') is-invalid @enderror" 
-                                    type="text" name="address" id="address" 
-                                    onkeyup="callStreet()"
+                                    type="text" name="address" id="address"
                                     value="{{old('address')}}"
                                     required
                                     >
@@ -146,6 +151,7 @@
                             </span>
                         </div>
                         @endforeach
+
                         <small id="check-err" class="form-text bg-warning text-danger fw-bold rounded-2" hidden>Select at least one service</small>
                     </div>
             
