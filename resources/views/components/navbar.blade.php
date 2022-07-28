@@ -19,7 +19,7 @@
             <ul class="navbar-nav">
                 <!-- ========== Start HOME ========== -->
                 <li class="nav-item px-1 px-md-3">
-                    <a class="nav-link" href="{{ route('home') }}">Home</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 <!-- ========== End HOME ========== -->
 

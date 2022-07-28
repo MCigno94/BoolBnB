@@ -34,9 +34,9 @@ Route::middleware('auth')
 });
 
 
-Route::get("/", function(){
+Route::get("{any?}", function(){
     return view('guest.home');
-})->name('home');
+})->where('any','.*');
 
 /* DEVE SEMPRE ESSERE L'ULTIMA */
 /*  Route::get("{any?}", function ()
