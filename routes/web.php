@@ -30,7 +30,7 @@ Route::middleware('auth')
 {
     //Route::get('/', 'HomeController@index')->name('home');
     Route::resource('apartments','UserApartmentController');
-    Route::get('apartments/messages','MessageController@index')->name('messages.index');
+    Route::get('apartments/messages','MessageController@index')->name('messages.store');
 });
 
 

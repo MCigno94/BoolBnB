@@ -44,7 +44,7 @@
                 <div class="col d-flex justify-content-center" v-for="apartment in apartments" :key="apartment.id">
                     <div class="my-card pt-3">
 
-                        <h5 v-if="apartment.distance"> {{ apartment.distance }} </h5>
+                        <h5 v-if="apartment.distance"> {{ (apartment.distance/1000).toFixed(1) }} Km</h5>
 
                         <div class="img">
                             <img :src="((apartment.img === 'Case-moderne.jpg') ? '../../img/Case-moderne.jpg' : `storage/${apartment.img}`)"
@@ -191,9 +191,8 @@ export default {
                                     let latitude = apartment.latitude;
                                     let longitude = apartment.longitude;
 
-                                    let m_distance = this.km_20_Apartments(latitude, longitude, lat_inizio, lon_inizio);
-                                    let distance = (m_distance  / 1000).toFixed(1)
-                                    
+                                    let distance = this.km_20_Apartments(latitude, longitude, lat_inizio, lon_inizio);
+                                    //let distance = (m_distance  / 1000).toFixed(1)                         
                                     apartment.distance = distance
                                     //console.log(apartment.service);
 
@@ -207,10 +206,9 @@ export default {
 
                                     let veritaServizio = lunghezza === counter
 
-                                    return (distance < 20) && this.stanze(apartment) && this.letti(apartment) && veritaServizio;
+                                    return (distance < 20000) && this.stanze(apartment) && this.letti(apartment) && veritaServizio;
                                 })
                                 //console.log(newArrayPosition);
-                                this.apartments = newArrayPosition;
 
                                 let biggest = 0
                                 let ordered_array = [];
@@ -219,7 +217,7 @@ export default {
                                 while(newArrayPosition.length !== 0){
                                         let j;
                                     for (const apartment of newArrayPosition) {
-                                        if(apartment.distance > biggest && apartment !== ''){
+                                        if(apartment.distance > biggest){
                                             biggest = apartment.distance
                                             single_apartment = apartment
                                             j = newArrayPosition.indexOf(apartment)
@@ -230,6 +228,7 @@ export default {
                                     biggest = 0
                                 }
                                 this.apartments = ordered_array;
+                                console.log(this.apartments);
                             })
 
 
