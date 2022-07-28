@@ -1,6 +1,12 @@
 <template>
   <section>
-    <Home/>
+
+    <div class="d-flex justify-content-center gap-4">
+      <router-link to="/" class="btn btn-primary text-white">HOME</router-link>
+      <router-link to="/search" class="btn btn-primary text-white">Go to Search</router-link>
+    </div>
+    <router-view></router-view>
+
   </section>
 </template>
 

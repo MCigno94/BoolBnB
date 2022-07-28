@@ -1,129 +1,31 @@
 <template>
     <section>
+        <Jumbotron 
+        :positionSearch="positionSearch"
+        :search_value="search_value"
+        :inputFilterRooms="inputFilterRooms"
+        :inputFilterBeds="inputFilterBeds"
+        :allServices="allServices"
+        :checkboxName="checkboxName"
+        :selectCheckbox="selectCheckbox"
+        :queryServices="queryServices"
+        />
 
-        <div class="jumbotron  d-flex flex-column align-items-center justify-content-center">
-            <div class="jumbo-img"></div>
-            <div class="jumbo-text d-flex flex-column align-items-center mx-4 gap-5">
-                <div class="cta">
-                    <h1 class="display-3 text-light text-center">Search your favourite location</h1>
-                </div>
-                <div class="mx-4 text-white">
-                    <!-- FILTER SEARCH -->
-                    <div id="searchBox"></div>
-                    <button class="btn btn-primary text-white" id="btnSearch" @click="positionSearch();">search</button>
-
-                    <div v-if="search_value !== ''">
-                        <div>
-                            <label for="searchRooms">Stanze</label>
-                            <input @keyup="inputFilterRooms()" @click="inputFilterRooms()" type="number"
-                                name="searchRooms" id="searchRooms">
-                        </div>
-
-                        <div>
-                            <label for="searchBeds">Letti</label>
-                            <input @keyup="inputFilterBeds()" type="number" name="searchBeds" id="searchBeds">
-                        </div>
-                        <div class="d-flex">
-                            <div v-for="service in allServices" :key="service.id">
-                                <input @click="checkboxName = service.name; selectCheckbox() " type="checkbox"
-                                    :name="service.name" :id="service.name">
-                                <label :for="service.name"> {{ service.name }} </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-
-
-        <div class="container my-5" :class="(showApartment === '') ? 'd-block' : 'd-none'">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 my-5 gy-3">
-                <div class="col d-flex justify-content-center" v-for="apartment in apartments" :key="apartment.id">
-                    <div class="my-card pt-3">
-
-                        <h5 v-if="apartment.distance"> {{ (apartment.distance/1000).toFixed(1) }} Km</h5>
-
-                        <div class="img">
-                            <img :src="((apartment.img === 'Case-moderne.jpg') ? '../../img/Case-moderne.jpg' : `storage/${apartment.img}`)"
-                                class="my-card-img" alt="" />
-                        </div>
-
-                        <button type="submit" @click="id = apartment.id; getMap()"> show </button>
-
-                        <div class="my-card-body d-flex flex-column">
-                            <p class="title fw-bold pb-1">{{ apartment.title }}</p>
-                            <p class="address text-secondary">{{ apartment.address }}</p>
-                            <div class="d-flex gap-4 text-secondary pt-2">
-                                <p class="rooms  d-flex gap-2 align-items-center">
-                                    <font-awesome-icon class="icon" icon="fa-solid fa-door-closed" />
-                                    {{ apartment.rooms_number }}
-                                </p>
-                                <p class="beds d-flex gap-2 align-items-center">
-                                    <font-awesome-icon class="icon" icon="fa-solid fa-bed" />
-                                    {{ apartment.beds_number }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <!-- SHOW APARTMENT -->
-        <div class="container " :class="(showApartment !== '') ? 'd-block' : 'd-none'">
-            <h1> {{ showApartment.title }} </h1>
-
-            <img v-if="showApartment !== ''"
-                :src="((showApartment.img === 'Case-moderne.jpg') ? '../../img/Case-moderne.jpg' : `storage/${showApartment.img}`)"
-                class="my-card-img" alt="" />
-            <div v-for="service in showApartment.service" :key="service.id">
-                <span>
-                    <i :class="service.icon" class="ps-1 pe-3" style="width: 8px;"></i>
-                    {{ service.name }}
-                </span>
-            </div>
-
-            <!-- <div class="address">
-                {{showApartment.address}}
-            </div> -->
-
-            <div class="maps">
-                <h2>Map</h2>
-
-                <div id="map" style="width: 500px; height: 300px;"></div>
-            </div>
-            <div class="messages">
-                <h3>Send a message</h3>
-
-                <form>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text"></div>
-                    </div>
-                    <textarea type="text" cols="60" rows="10" class="form-control mt-3" name="" id=""
-                        aria-describedby="helpId" placeholder=""></textarea>
-                    <button class="btn btn-danger mt-3">Send</button>
-                </form>
-            </div>
-
-        </div>
-
-
+        <Cards 
+        :apartments="apartments"
+        :getMap="getMap"
+        />
     </section>
 </template>
 
 <script>
 
-import tt from '@tomtom-international/web-sdk-maps';
+import Jumbotron from '../components/Jumbotron.vue';
+import Cards from '../components/Cards.vue';
 
 export default {
     name: "Home",
+    components: {Jumbotron, Cards},
     data() {
         return {
             apartments: '',
@@ -237,13 +139,6 @@ export default {
                 this.callAPI();
             }
         },
-        // filterAllApi() {
-        //     if (this.lat !== '' && this.lon !== '') {
-
-        //     } else {
-        //         this.callAPI();
-        //     }
-        // },
         stanze(apartment) {
             let stanze;
             if (this.roomsNumber !== '') {
@@ -315,8 +210,10 @@ export default {
             });
         },
         selectCheckbox() {
-            let checkbox = document.getElementById(this.checkboxName)
-            checkbox.classList.toggle('active')
+
+
+
+            document.getElementById(this.checkboxName).classList.toggle('active')
             if (checkbox.classList.contains('active')) {
                 console.log('funziona');
                 this.queryServices.push(this.checkboxName)
@@ -338,7 +235,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .jumbotron {
     position: relative;
     height: 600px;
@@ -353,7 +250,7 @@ export default {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        filter: brightness(20%);
+        filter: brightness(60%);
     }
 
     .search {

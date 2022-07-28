@@ -9,6 +9,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import App from './layouts/App';
+import router from './router';
 
 
 /* import the fontawesome core */
@@ -20,10 +21,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import specific icons */
 import { faBed, faDoorClosed } from '@fortawesome/free-solid-svg-icons'
 
-
-/* search */
-import { services } from '@tomtom-international/web-sdk-services';
-import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
 
 /* add icons to the library */
 library.add(faBed, faDoorClosed)
@@ -53,25 +50,6 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 const app = new Vue({
     el: '#root',
+    router,
     render: h => h(App) // mostriamo App all'avvio di Vue
 })
-
-
-
-let options = {
-    idleTimePress: 500,
-    minNumberOfCharacters: 0,
-    searchOptions: {
-        key: 'kZ6HRy3q9inkB8ydTon7vCtbYvd6yMSV',
-        language: 'it-IT'
-    },
-    /* autocompleteOptions: {
-        key: 'kZ6HRy3q9inkB8ydTon7vCtbYvd6yMSV',
-        language: 'it-IT'
-    }, */
-    noResultsMessage: 'No results found.'
-}
-const ttSearchBox = new SearchBox(services, options);
-const searchBoxHTML = ttSearchBox.getSearchBoxHTML();
-document.getElementById('searchBox').append(searchBoxHTML);
-console.log(searchBoxHTML);
