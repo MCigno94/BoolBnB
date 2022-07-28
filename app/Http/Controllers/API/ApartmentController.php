@@ -16,11 +16,11 @@ class ApartmentController extends Controller
     public function index($all)
     {   
         if($all === "all"){
-            $apartments = Apartment::orderByDesc('id')->with('service')->get();
+            $apartments = Apartment::orderByDesc('id')->where('visibility', 'true')->with('service')->get();
             return $apartments;
         }
         else if($all === "partial") {
-            $apartments = Apartment::orderByDesc('id')->with('service')->simplePaginate(10);
+            $apartments = Apartment::orderByDesc('id')->where('visibility', 'true')->with('service')->simplePaginate(10);
             return $apartments;
         }
     }
