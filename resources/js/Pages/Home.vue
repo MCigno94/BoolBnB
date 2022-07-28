@@ -191,7 +191,9 @@ export default {
                                     let latitude = apartment.latitude;
                                     let longitude = apartment.longitude;
 
-                                    let distance = this.km_20_Apartments(latitude, longitude, lat_inizio, lon_inizio);
+                                    let m_distance = this.km_20_Apartments(latitude, longitude, lat_inizio, lon_inizio);
+                                    let distance = (m_distance  / 1000).toFixed(1)
+                                    
                                     apartment.distance = distance
                                     //console.log(apartment.service);
 
@@ -205,7 +207,7 @@ export default {
 
                                     let veritaServizio = lunghezza === counter
 
-                                    return (distance < 20000) && this.stanze(apartment) && this.letti(apartment) && veritaServizio;
+                                    return (distance < 20) && this.stanze(apartment) && this.letti(apartment) && veritaServizio;
                                 })
                                 //console.log(newArrayPosition);
                                 this.apartments = newArrayPosition;
