@@ -20,7 +20,7 @@ class ApartmentController extends Controller
             return $apartments;
         }
         else if($all === "partial") {
-            $apartments = Apartment::orderByDesc('id')->where('visibility', 'true')->with('service')->simplePaginate(10);
+            $apartments = Apartment::orderByDesc('id')->where('visibility', 'true')->with('service')->simplePaginate(12);
             return $apartments;
         }
     }

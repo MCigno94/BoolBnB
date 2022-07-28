@@ -3,12 +3,6 @@
         <Jumbotron 
         :positionSearch="positionSearch"
         :search_value="search_value"
-        :inputFilterRooms="inputFilterRooms"
-        :inputFilterBeds="inputFilterBeds"
-        :allServices="allServices"
-        :checkboxName="checkboxName"
-        :selectCheckbox="selectCheckbox"
-        :queryServices="queryServices"
         />
 
         <Cards 

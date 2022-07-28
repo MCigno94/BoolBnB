@@ -5,14 +5,41 @@
             <div class="cta">
                 <h1 class="display-3 text-light text-center">Search your favourite location</h1>
             </div>
-            <div class="searchbox">
-                <div class="d-flex d-flex justify gap-2 align-items-center">
-                    <div @keyup="positionSearch()" id="searchBox"></div>
-                </div>
-                <div class="pt-3">
-                    <router-link :to="`/advanced-search`" class="advancedSearch text-danger">Advanced Search</router-link>
+            <div class="searchbox d-flex flex-column">
+                <div>
+                    <div class="d-flex d-flex justify gap-2 align-items-center">
+                        <div id="searchBox"></div>
+                    <button id="btnSearch" class="btn btn-danger text-white" @click="positionSearch()">Search</button>
+                    </div>
+                    <div>
+                        <router-link :to="`/advanced-search`" class="advancedSearch text-danger">Advanced Search</router-link>
+                    </div>
+                    </div>
+            </div>
+            <div class="mx-4 text-white">
+                <!-- FILTER SEARCH -->
+
+                <div v-if="search_value !== ''" class="d-flex gap-3">
+                    <div>
+                        <label for="searchRooms">Rooms</label>
+                        <input min="1" @keyup="inputFilterRooms()" @click="inputFilterRooms()" type="number"
+                            name="searchRooms" id="searchRooms">
+                    </div>
+
+                    <div>
+                        <label for="searchBeds">Beds</label>
+                        <input min="1" @keyup="inputFilterBeds()" type="number" name="searchBeds" id="searchBeds">
+                    </div>
+                    <div class="d-flex">
+                        <div v-for="service in allServices" :key="service.id">
+                            <input @click="checkboxName = service.name; selectCheckbox() " type="checkbox"
+                                :name="service.name" :id="service.name">
+                            <label :for="service.name"> {{ service.name }} </label>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </template>
@@ -54,11 +81,10 @@ export default {
 
 <style lang="scss">
 .searchbox{
-    width: 60% !important;
-    min-width: 270px !important;
     #searchBox{
         width: 150% !important;
         margin: 0;padding: 0;
+
         .tt-search-box{
             border-radius: 12px !important;
             .tt-search-box-input-container{

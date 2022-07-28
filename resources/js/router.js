@@ -5,8 +5,8 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import Search from './Pages/Search'
 import Home from './Pages/Home'
+import Search from './Pages/AdvancedSearch'
 import Apartment from './Pages/Apartment'
 
 // 2. Define some routes
@@ -16,7 +16,7 @@ import Apartment from './Pages/Apartment'
 // We'll talk about nested routes later.
 const routes = [
     { path: '/', component: Home },
-    { path: '/search', component: Search },
+    { path: '/advanced-search', component: Search },
     { name: 'apartment', path: '/apartment/:id', component: Apartment },
 ]
 
