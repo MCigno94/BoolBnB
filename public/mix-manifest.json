@@ -4,6 +4,7 @@
     "/css/dashboard.css": "/css/dashboard.css",
     "/css/login-register.css": "/css/login-register.css",
     "/js/btn.js": "/js/btn.js",
+    "/js/router.js": "/js/router.js",
     "/js/search.js": "/js/search.js",
     "/js/searchStreet.js": "/js/searchStreet.js"
 }
